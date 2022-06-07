@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Data
 @ToString
 @Entity
+@Table(name="users")
 public class User {
     @Id
     @Column
