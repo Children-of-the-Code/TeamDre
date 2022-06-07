@@ -32,7 +32,7 @@ public class User {
     @Column
     private int zip;
     @Column
-    private int phone;
+    private long phone;
     @Column(unique = true)
     private String username;
     @Column
