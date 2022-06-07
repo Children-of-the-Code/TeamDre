@@ -1,7 +1,4 @@
 package com.TeamDre.AnimalAdoption.Service;
-
-
-import com.TeamDre.AnimalAdoption.Model.Animal;
 import com.TeamDre.AnimalAdoption.Model.Organization;
 import com.TeamDre.AnimalAdoption.Repository.OrganizationRepository;
 import org.springframework.beans.factory.annotation.Autowired;

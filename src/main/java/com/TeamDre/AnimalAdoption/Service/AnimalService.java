@@ -1,7 +1,6 @@
 package com.TeamDre.AnimalAdoption.Service;
 import com.TeamDre.AnimalAdoption.Model.Animal;
 import com.TeamDre.AnimalAdoption.Repository.AnimalRepository;
-import com.TeamDre.AnimalAdoption.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

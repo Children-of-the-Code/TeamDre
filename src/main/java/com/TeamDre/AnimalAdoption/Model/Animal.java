@@ -1,10 +1,6 @@
 package com.TeamDre.AnimalAdoption.Model;
 import lombok.*;
-import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 
 
