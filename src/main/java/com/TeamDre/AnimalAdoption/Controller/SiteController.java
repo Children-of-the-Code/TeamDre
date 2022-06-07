@@ -16,12 +16,16 @@ public class SiteController {
     OrganizationService organizationService;
     UserService userService;
 
+
+
     @Autowired
     public SiteController(AnimalService animalService, OrganizationService organizationService, UserService userService){
         this.animalService=animalService;
         this.organizationService=organizationService;
         this.userService=userService;
     }
+
+    //Animal queries
     @GetMapping
     public List<Animal> getAllAnimals(){
         return animalService.getAllAnimal();
@@ -29,6 +33,31 @@ public class SiteController {
     @PostMapping("add")
     public void addAnimal(@RequestBody Animal animal){
         animalService.createAnimal(animal);
+    }
+
+
+
+    //Organization queries
+    @GetMapping("organization")
+    public List<Organization> getAllOrganization(){
+        return organizationService.getAllOrganization();
+    }
+    @PostMapping("organization/add")
+    public void addOrganization(@RequestBody Organization organization){
+        organizationService.createOrganization(organization);
+    }
+
+
+
+
+    //User queries
+    @GetMapping("users")
+    public List<User> getAllUser(){
+        return userService.getAllUser();
+    }
+    @PostMapping("users/add")
+    public void addUser(@RequestBody User user){
+        userService.createUser(user);
     }
 
 }

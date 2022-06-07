@@ -3,6 +3,7 @@ import lombok.*;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @AllArgsConstructor
@@ -26,12 +27,12 @@ public class Organization {
     @Column
     private int zip;
     @Column
-    private int phone;
-    @Column(unique = true)
+    private long phone;
+    @Column(unique = true, nullable = false)
     private String username;
     @Column
     private String password;
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
     @Column
     private String description;

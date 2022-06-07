@@ -26,18 +26,26 @@ public class Animal {
     @Column
     private int age;
     @Column
-    //@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
     private Date date_added;
     @Column
-    private String temperament;
+    private Temperament temperament;
     @Column
     private int fee;
-    @Column
-    private int org_id;
+
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="org_id")
+    private Organization organization;
     @Column
     private String type;
     @Column
     private String breed;
     @Column
     private String gets_along;
+
+    public enum Temperament{
+        Mild,
+        Medium,
+        Hot,
+        Spicy
+    }
 }
