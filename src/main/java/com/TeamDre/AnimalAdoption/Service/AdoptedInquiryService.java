@@ -24,11 +24,29 @@ public class AdoptedInquiryService {
         this.animalRepository = animalRep;
     }
 
-    public List<AdoptedInquiry> getAllInquiries(){ return adoptedInquiryRepository.findAll(); }
+    public List<AdoptedInquiry> getAllInquiries() { return adoptedInquiryRepository.findAll(); }
 
-    public void createInquiry(AdoptedInquiry inquiry, int userId, int animalId){
+    public List<AdoptedInquiry> getInquiriesByUserId (int userId) { return adoptedInquiryRepository.getInquiriesByUserID(userId); }
+
+    public List<AdoptedInquiry> getInquiriesByAnimalId (int animalId) { return adoptedInquiryRepository.getInquiriesByAnimalId(animalId); }
+
+    public void createInquiry(int userId, int animalId){
+        AdoptedInquiry inquiry = new AdoptedInquiry();
         inquiry.setUser(userRepository.getById(userId));
         inquiry.setAnimal(animalRepository.getById(animalId));
+        inquiry.setStatus(AdoptedInquiry.Status.Pending);
         adoptedInquiryRepository.save(inquiry);
+    }
+
+    public void deleteInquiryById(int inquiryId){
+        //adoptedInquiryRepository.deleteById(inquiryId);
+        AdoptedInquiry inquiry = adoptedInquiryRepository.getById(inquiryId);
+        adoptedInquiryRepository.delete(inquiry);
+    }
+
+    public void updateInquiryStatus(int inquiryId, AdoptedInquiry.Status status ){
+        AdoptedInquiry ai = adoptedInquiryRepository.getById(inquiryId);
+        ai.setStatus(status);
+        adoptedInquiryRepository.save(ai);
     }
 }
