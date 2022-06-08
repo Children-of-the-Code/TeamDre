@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 
 @RestController
@@ -58,6 +60,13 @@ public class SiteController {
     @PostMapping("users/add")
     public void addUser(@RequestBody User user){
         userService.createUser(user);
+    }
+    @PostMapping("users/login")
+    public User loginUser(@RequestBody Map<String, Object> dto){
+        return userService.login(dto.get("username").toString(),dto.get("password").toString());
+        //System.out.println(dto.get("username").toString());
+        //System.out.println(dto.get("password"));
+        //return null;
     }
 
 }
