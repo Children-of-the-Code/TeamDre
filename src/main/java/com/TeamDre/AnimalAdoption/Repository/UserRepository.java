@@ -16,9 +16,4 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 
 
-    /*@Query("from users where username= :username and password= :password")
-    boolean login(String username, String password);*/
-
-    /*@Query("FROM users WHERE username= :username AND password= :password")
-    User getByUsername(@Param("username") String username, @Param("password") String password);*/
 }

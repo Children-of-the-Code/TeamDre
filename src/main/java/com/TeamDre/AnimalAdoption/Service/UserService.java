@@ -22,11 +22,5 @@ public class UserService {
     public void createUser(User user){
         userRepository.save(user);
     }
-    /*public User login(String username, String password){
-            User user = userRepository.getByUsername(username, password);
-        //System.out.println(username+" "+password);
-            return null;
-    }*/
-
 
 }
