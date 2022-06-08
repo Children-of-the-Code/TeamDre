@@ -34,9 +34,10 @@ public class AnimalController {
     public List<Animal> getAllAnimals(){
         return animalService.getAllAnimal();
     }
-    @PostMapping("add")
-    public void addAnimal(@RequestBody Animal animal){
-        animalService.createAnimal(animal);
+    @PostMapping("add/{id}")
+    public void addAnimal(@RequestBody Animal animal, @PathVariable("id") int id){
+
+        animalService.createAnimal(animal, id);
     }
 
 }

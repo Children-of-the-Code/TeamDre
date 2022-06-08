@@ -33,8 +33,8 @@ public class Animal {
     @Column
     private int fee;
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="org_id")
+    @ManyToOne
+    @JoinColumn(name="org_id", nullable = false)
     private Organization organization;
     @Column
     private String type;
