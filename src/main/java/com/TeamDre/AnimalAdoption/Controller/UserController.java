@@ -23,4 +23,7 @@ public class UserController {
     public List<User> getAllUser(){
         return userService.getAllUser();
     }
+
+    @PostMapping("add")
+    public void createUser(@RequestBody User user){userService.createUser(user);}
 }
