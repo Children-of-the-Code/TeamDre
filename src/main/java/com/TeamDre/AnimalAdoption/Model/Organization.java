@@ -1,8 +1,12 @@
 package com.TeamDre.AnimalAdoption.Model;
-import lombok.*;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
+
 
 
 @AllArgsConstructor
@@ -26,12 +30,12 @@ public class Organization {
     @Column
     private int zip;
     @Column
-    private int phone;
-    @Column(unique = true)
+    private long phone;
+    @Column(unique = true, nullable = false)
     private String username;
     @Column
     private String password;
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
     @Column
     private String description;

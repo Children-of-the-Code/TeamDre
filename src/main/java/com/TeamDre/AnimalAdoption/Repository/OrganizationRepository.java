@@ -9,4 +9,5 @@ import javax.transaction.Transactional;
 @Transactional
 public interface OrganizationRepository extends JpaRepository<Organization, Integer> {
 
+
 }

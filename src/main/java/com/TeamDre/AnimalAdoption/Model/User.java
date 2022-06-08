@@ -1,7 +1,10 @@
 package com.TeamDre.AnimalAdoption.Model;
 
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -32,7 +35,7 @@ public class User {
     @Column
     private int zip;
     @Column
-    private int phone;
+    private long phone;
     @Column(unique = true)
     private String username;
     @Column

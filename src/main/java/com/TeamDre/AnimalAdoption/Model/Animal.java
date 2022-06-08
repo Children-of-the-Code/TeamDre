@@ -1,10 +1,11 @@
 package com.TeamDre.AnimalAdoption.Model;
-import lombok.*;
-import org.hibernate.annotations.Type;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 
 
@@ -26,18 +27,26 @@ public class Animal {
     @Column
     private int age;
     @Column
-    //@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
     private Date date_added;
     @Column
-    private String temperament;
+    private Temperament temperament;
     @Column
     private int fee;
-    @Column
-    private int org_id;
+
+    @ManyToOne
+    @JoinColumn(name="org_id", nullable = false)
+    private Organization organization;
     @Column
     private String type;
     @Column
     private String breed;
     @Column
     private String gets_along;
+
+    public enum Temperament{
+        Mild,
+        Medium,
+        Hot,
+        Spicy
+    }
 }
