@@ -20,7 +20,22 @@ public class UserService {
         return userRepository.findAll();
     }
     public void createUser(User user){
-        userRepository.save(user);
+        String username=user.getUsername();
+        User temp=userRepository.getUserByUsername(username);
+        User temp2=userRepository.getUserByEmail(user.getEmail());
+        if (temp==null&&temp2==null) {
+            userRepository.save(user);
+        }
+    }
+    public User login(String username, String password){
+        User user = userRepository.login(username, password);
+
+        if (user!=null) {
+
+             return user;
+        }else {
+            return null;
+        }
     }
 
 }

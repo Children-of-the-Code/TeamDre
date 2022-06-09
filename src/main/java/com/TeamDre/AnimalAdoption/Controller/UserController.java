@@ -25,5 +25,15 @@ public class UserController {
     }
 
     @PostMapping("add")
-    public void createUser(@RequestBody User user){userService.createUser(user);}
+    public void addUser(@RequestBody User user){
+        userService.createUser(user);
+    }
+    @PostMapping("login")
+    public User loginUser(@RequestBody Map<String, Object> dto){
+        return userService.login(dto.get("username").toString(),dto.get("password").toString());
+        //System.out.println(dto.get("username").toString());
+        //System.out.println(dto.get("password"));
+        //.return null;
+    }
+
 }
