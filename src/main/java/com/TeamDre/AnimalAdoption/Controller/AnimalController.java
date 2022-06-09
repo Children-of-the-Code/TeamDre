@@ -17,16 +17,14 @@ import java.util.Map;
 @RequestMapping("animals")
 public class AnimalController {
     AnimalService animalService;
-    OrganizationService organizationService;
-    UserService userService;
+
 
 
 
     @Autowired
-    public AnimalController(AnimalService animalService/*, OrganizationService organizationService, UserService userService*/){
+    public AnimalController(AnimalService animalService){
         this.animalService=animalService;
-        //this.organizationService=organizationService;
-        //this.userService=userService;
+
     }
 
     //Animal queries

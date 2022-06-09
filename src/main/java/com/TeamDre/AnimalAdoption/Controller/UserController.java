@@ -23,6 +23,7 @@ public class UserController {
     public List<User> getAllUser(){
         return userService.getAllUser();
     }
+
     @PostMapping("add")
     public void addUser(@RequestBody User user){
         userService.createUser(user);
@@ -34,4 +35,5 @@ public class UserController {
         //System.out.println(dto.get("password"));
         //.return null;
     }
+
 }
