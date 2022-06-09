@@ -27,6 +27,10 @@ public class Animal {
     @Column
     private int age;
     @Column
+    private Gender gender;
+    @Column
+    private String color;
+    @Column
     private Date date_added;
     @Column
     private Temperament temperament;
@@ -48,5 +52,9 @@ public class Animal {
         Medium,
         Hot,
         Spicy
+    }
+    public enum Gender{
+        Male,
+        Female
     }
 }
