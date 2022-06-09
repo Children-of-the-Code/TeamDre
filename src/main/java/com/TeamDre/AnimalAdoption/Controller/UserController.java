@@ -40,4 +40,9 @@ public class UserController {
         return userService.getUserInformation(id);
     }
 
+
+    @PostMapping("changepassword")
+    public String changePassword(@RequestBody Map<String, Object> dto){
+        return userService.changePassword(dto.get("username").toString(), dto.get("password").toString());
+    }
 }
