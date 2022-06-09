@@ -45,4 +45,8 @@ public class UserController {
     public String changePassword(@RequestBody Map<String, Object> dto){
         return userService.changePassword(dto.get("username").toString(), dto.get("password").toString());
     }
+    @PostMapping("changeuserinfo")
+    public String changeUserInfo(@RequestBody User user){
+        return userService.changeUserInfo(user);
+    }
 }
