@@ -37,4 +37,13 @@ public class UserService {
             return null;
         }
     }
+
+    public User getUserInformation(int id) {
+        User user=userRepository.getUserById(id);
+        if (user!=null){
+            return user;
+        }else{
+            return null;
+        }
+    }
 }

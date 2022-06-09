@@ -35,5 +35,9 @@ public class UserController {
         //System.out.println(dto.get("password"));
         //.return null;
     }
+    @GetMapping("user/{id}")
+    public User getUserInformation(@PathVariable("id") int id){
+        return userService.getUserInformation(id);
+    }
 
 }
