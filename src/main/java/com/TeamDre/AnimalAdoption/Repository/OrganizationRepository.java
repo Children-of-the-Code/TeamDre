@@ -21,4 +21,5 @@ public interface OrganizationRepository extends JpaRepository<Organization, Inte
     Organization findByOrg_id(@Param("org_id")int org_id);
 
     Organization findOrganizationByUsername(String name);
+
 }

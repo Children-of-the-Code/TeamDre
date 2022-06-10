@@ -38,7 +38,7 @@ public class OrganizationController {
         return organizationService.getOrganizationbyUsername(name);
     }
     @PostMapping("changepassword")
-    public void changepassword(@RequestBody Object dto){
-
+    public void changepassword(@RequestBody Map<String,Object> dto){
+        organizationService.changePassword(Integer.parseInt(dto.get("id").toString()), dto.get("password").toString());
     }
 }

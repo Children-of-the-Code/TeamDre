@@ -44,8 +44,8 @@ public class OrganizationService {
         return organizationRepository.findOrganizationByUsername(name);
     }
 
-    public String changePassword(String username, String s) {
-        Organization org=organizationRepository.getOrganizationByUsername(username);
+    public String changePassword(int id, String s) {
+        Organization org=organizationRepository.findByOrg_id(id);
         if (org!=null){
             org.setPassword(s);
             organizationRepository.save(org);
