@@ -39,7 +39,7 @@ public class OrganizationController {
     }
     @PostMapping("changepassword")
     public void changepassword(@RequestBody Map<String,Object> dto){
-        organizationService.changePassword(Integer.parseInt(dto.get("id").toString()), dto.get("password").toString());
+        organizationService.changePassword(Integer.parseInt(dto.get("org_id").toString()), dto.get("password").toString());
     }
     @PostMapping("changeinfo")
     public String changeInfo(@RequestBody Organization org){

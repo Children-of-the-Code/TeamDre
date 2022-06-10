@@ -46,7 +46,7 @@ public class OrganizationService {
 
     public String changePassword(int id, String s) {
         Organization org=organizationRepository.findByOrg_id(id);
-        if (org!=null){
+        if (org!=null&&!org.getPassword().equals(s)){
             org.setPassword(s);
             organizationRepository.save(org);
             return "Password changed successfully";
