@@ -75,7 +75,7 @@ public class UserService {
         }else{
             return "Could not update the user. Please fill out the form correctly";
         }
-        return "unkown error";
+        return "unknown error";
     }
 
     public User getByUsername(String name) {
