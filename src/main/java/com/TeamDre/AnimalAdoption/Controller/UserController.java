@@ -39,11 +39,15 @@ public class UserController {
     public User getUserInformation(@PathVariable("id") int id){
         return userService.getUserInformation(id);
     }
+    @GetMapping("username/{name}")
+    public User getUserByName(@PathVariable("name") String name){
+        return userService.getByUsername(name);
+    }
 
 
     @PostMapping("changepassword")
     public String changePassword(@RequestBody Map<String, Object> dto){
-        return userService.changePassword(Integer.parseInt(dto.get("username").toString()), dto.get("password").toString());
+        return userService.changePassword(Integer.parseInt(dto.get("id").toString()), dto.get("password").toString());
     }
     @PostMapping("changeuserinfo")
     public String changeUserInfo(@RequestBody User user){

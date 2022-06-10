@@ -27,4 +27,5 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     User getUserById(@Param("id") int id);
 
 
+    User findByUsername(String name);
 }

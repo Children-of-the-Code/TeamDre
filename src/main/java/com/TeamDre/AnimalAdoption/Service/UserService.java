@@ -49,7 +49,7 @@ public class UserService {
 
     public String changePassword(int id, String s) {
         User user=userRepository.getUserById(id);
-        if (user!=null){
+        if (user!=null&&!user.getPassword().equals(s)){
             user.setPassword(s);
             userRepository.save(user);
             return "Password changed successfully";
@@ -76,5 +76,9 @@ public class UserService {
             return "Could not update the user. Please fill out the form correctly";
         }
         return "unkown error";
+    }
+
+    public User getByUsername(String name) {
+        return userRepository.findByUsername(name);
     }
 }
