@@ -37,4 +37,8 @@ public class OrganizationController {
     public Organization byName(@PathVariable("name") String name){
         return organizationService.getOrganizationbyUsername(name);
     }
+    @PostMapping("changepassword")
+    public void changepassword(@RequestBody Object dto){
+
+    }
 }

@@ -1,5 +1,6 @@
 package com.TeamDre.AnimalAdoption.Service;
 import com.TeamDre.AnimalAdoption.Model.Organization;
+import com.TeamDre.AnimalAdoption.Model.User;
 import com.TeamDre.AnimalAdoption.Repository.OrganizationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -41,5 +42,16 @@ public class OrganizationService {
 
     public Organization getOrganizationbyUsername(String name) {
         return organizationRepository.findOrganizationByUsername(name);
+    }
+
+    public String changePassword(String username, String s) {
+        Organization org=organizationRepository.getOrganizationByUsername(username);
+        if (org!=null){
+            org.setPassword(s);
+            organizationRepository.save(org);
+            return "Password changed successfully";
+        }else {
+            return "could not change password";
+        }
     }
 }
