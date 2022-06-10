@@ -19,6 +19,19 @@ public class OrganizationService {
         return organizationRepository.findAll();
     }
     public void createOrganization(Organization organization){
-        organizationRepository.save(organization);
+        Organization temp=organizationRepository.getOrganizationByUsername(organization.getUsername());
+        Organization temp2=organizationRepository.getOrganizationByEmail(organization.getEmail());
+        if (temp!=null&&temp2!=null) {
+            organizationRepository.save(organization);
+        }
+    }
+
+    public Organization login(String username, String password){
+        Organization org=organizationRepository.login(username, password);
+        if (org!=null){
+            return org;
+        }else{
+            return null;
+        }
     }
 }
