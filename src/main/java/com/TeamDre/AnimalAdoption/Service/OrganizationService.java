@@ -34,4 +34,12 @@ public class OrganizationService {
             return null;
         }
     }
+
+    public Organization getOrganizationById(int id) {
+        return organizationRepository.findByOrg_id(id);
+    }
+
+    public Organization getOrganizationbyUsername(String name) {
+        return organizationRepository.findOrganizationByUsername(name);
+    }
 }

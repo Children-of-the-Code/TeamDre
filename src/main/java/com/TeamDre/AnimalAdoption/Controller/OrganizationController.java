@@ -29,4 +29,12 @@ public class OrganizationController {
     public Organization login(@RequestBody Map<String, Object> dto){
         return organizationService.login(dto.get("username").toString(), dto.get("password").toString());
     }
+    @GetMapping("byid/{id}")
+    public Organization byId(@PathVariable("id") int id){
+        return organizationService.getOrganizationById(id);
+    }
+    @GetMapping("byname/{name}")
+    public Organization byName(@PathVariable("name") String name){
+        return organizationService.getOrganizationbyUsername(name);
+    }
 }

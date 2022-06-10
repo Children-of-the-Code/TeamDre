@@ -17,4 +17,8 @@ public interface OrganizationRepository extends JpaRepository<Organization, Inte
     Organization getOrganizationByEmail(@Param("email")String email);
     @Query("from Organization where username= :username and password= :password")
     Organization login(@Param("username") String username,@Param("password") String password);
+    @Query("from Organization where org_id= :org_id")
+    Organization findByOrg_id(@Param("org_id")int org_id);
+
+    Organization findOrganizationByUsername(String name);
 }
