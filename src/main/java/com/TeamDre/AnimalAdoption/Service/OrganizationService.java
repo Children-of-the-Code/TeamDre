@@ -56,5 +56,24 @@ public class OrganizationService {
     }
 
     public String changeInfo(Organization org) {
+
+            Organization temp=organizationRepository.getById(org.getOrg_id());
+            Organization emailCheck=organizationRepository.getOrganizationByEmail(org.getEmail());
+            Organization usernameCheck=organizationRepository.findOrganizationByUsername(org.getUsername());
+            if (temp!=null){
+                System.out.println("step1");
+                if (usernameCheck!=null&&usernameCheck.getOrg_id()!=temp.getOrg_id()) {
+                    return "Organization info cannot be updated because username already exists!";
+                }else if(emailCheck!=null&&emailCheck.getOrg_id()!=temp.getOrg_id()){
+                    return "Organization info cannot be updated because the Email already exists for an account. If you own this email, try changing the password.";
+                }else if (temp.getOrg_id()==org.getOrg_id()){
+                    organizationRepository.save(org);
+                    return "Organization info successfully updated!";
+                }
+            }else{
+                return "Could not update the Organization. Please fill out the form correctly";
+            }
+            return "unkown error";
+
     }
 }
