@@ -47,8 +47,8 @@ public class UserService {
         }
     }
 
-    public String changePassword(String username, String s) {
-        User user=userRepository.getUserByUsername(username);
+    public String changePassword(int id, String s) {
+        User user=userRepository.getUserById(id);
         if (user!=null){
             user.setPassword(s);
             userRepository.save(user);
