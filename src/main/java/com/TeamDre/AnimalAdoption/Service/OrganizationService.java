@@ -22,7 +22,7 @@ public class OrganizationService {
     public void createOrganization(Organization organization){
         Organization temp=organizationRepository.getOrganizationByUsername(organization.getUsername());
         Organization temp2=organizationRepository.getOrganizationByEmail(organization.getEmail());
-        if (temp!=null&&temp2!=null) {
+        if (temp==null&&temp2==null) {
             organizationRepository.save(organization);
         }
     }
