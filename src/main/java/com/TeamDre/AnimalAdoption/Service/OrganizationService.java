@@ -54,4 +54,7 @@ public class OrganizationService {
             return "could not change password";
         }
     }
+
+    public String changeInfo(Organization org) {
+    }
 }
