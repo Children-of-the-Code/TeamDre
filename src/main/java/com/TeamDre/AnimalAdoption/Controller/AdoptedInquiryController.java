@@ -59,10 +59,9 @@ public class AdoptedInquiryController {
         adoptedInquiryService.updateInquiryStatus(inquiryId, AdoptedInquiry.Status.Cancelled);
     }
 
+    // Delete an inquiry by the ID
     @DeleteMapping("delete/{id}")
     public void deleteInquiryById(@PathVariable("id") int inquiryId){
         adoptedInquiryService.deleteInquiryById(inquiryId);
     }
 }
-
-//git commit -m "AdoptedInquiry CRUD endpoints functioning"
