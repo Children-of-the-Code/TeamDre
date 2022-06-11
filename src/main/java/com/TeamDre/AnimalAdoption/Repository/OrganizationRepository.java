@@ -23,5 +23,7 @@ public interface OrganizationRepository extends JpaRepository<Organization, Inte
     Organization findOrganizationByUsername(String name);
     @Query("from Organization where city= :city")
     Organization findByCity(@Param("city") String city);
+    @Query("from Organization where state= :state")
+    Organization findByState(@Param("state") String state);
 
 }

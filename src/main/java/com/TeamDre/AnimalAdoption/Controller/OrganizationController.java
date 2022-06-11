@@ -49,4 +49,8 @@ public class OrganizationController {
     public Organization byCity(@PathVariable("city") String city){
         return organizationService.getOrganizationbyCity(city);
     }
+    @GetMapping("bystate/{state}")
+    public Organization byState(@PathVariable("state") String state){
+        return organizationService.getOrganizationByState(state);
+    }
 }
