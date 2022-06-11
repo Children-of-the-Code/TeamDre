@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Component
 public class AnimalService {
@@ -73,5 +74,9 @@ public class AnimalService {
     }
     public List<Animal> getAnimalByThreeParameters(String type, String breed, Animal.Gender gender){
         return animalRepository.findAnimalByTypeAndBreedAndGender(type, breed, gender);
+    }
+
+    public List<Animal> getAnimalByAgeIn(Set<Integer> ages){
+        return animalRepository.findAnimalByAgeIn(ages);
     }
 }

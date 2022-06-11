@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 
 @RestController
@@ -95,4 +96,8 @@ public class AnimalController {
         return animalService.getAnimalByMostParameters(type, breed, gender, city);
     }
 
+    @GetMapping("ages")
+    public List<Animal> getAnimalByAgeIn(@RequestParam(value = "ages", required = false) Set<Integer> ages){
+        return animalService.getAnimalByAgeIn(ages);
+    }
 }

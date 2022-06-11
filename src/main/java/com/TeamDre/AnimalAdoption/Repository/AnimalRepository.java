@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 
 @Transactional
@@ -35,5 +36,6 @@ public interface AnimalRepository extends JpaRepository<Animal, Integer> {
 
     public List<Animal> findAnimalByTypeAndBreed(String type, String breed);
     public List<Animal> findAnimalByTypeAndBreedAndGender(String type, String breed, Animal.Gender gender);
+    public List<Animal> findAnimalByAgeIn(Set<Integer> age);
 
 }
