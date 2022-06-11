@@ -45,4 +45,8 @@ public class OrganizationController {
     public String changeInfo(@RequestBody Organization org){
         return organizationService.changeInfo(org);
     }
+    @GetMapping("bycity/{city}")
+    public Organization byCity(@PathVariable("city") String city){
+        return organizationService.getOrganizationbyCity(city);
+    }
 }

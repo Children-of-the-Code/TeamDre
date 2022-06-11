@@ -44,6 +44,10 @@ public class OrganizationService {
         return organizationRepository.findOrganizationByUsername(name);
     }
 
+    public Organization getOrganizationbyCity(String city){
+        return organizationRepository.findByCity(city);
+    }
+
     public String changePassword(int id, String s) {
         Organization org=organizationRepository.findByOrg_id(id);
         if (org!=null&&!org.getPassword().equals(s)){
