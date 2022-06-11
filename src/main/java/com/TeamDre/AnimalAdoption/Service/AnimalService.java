@@ -32,9 +32,6 @@ public class AnimalService {
     public List<Animal> getAnimalByType(String type){
         return animalRepository.findAnimalByType(type);
     }
-    public List<Animal> getAnimalByColor(String color){
-        return animalRepository.findAnimalByColor(color);
-    }
     public List<Animal> getAnimalByGender(Animal.Gender gender){
         return animalRepository.findAnimalByGender(gender);
     }
@@ -66,5 +63,15 @@ public class AnimalService {
         Organization u=organizationRepository.getById(id);
         animal.setOrganization(u);
         animalRepository.save(animal);
+    }
+    public List<Animal> getAnimalByMostParameters(String type, String breed,  Animal.Gender gender, String city){
+        return animalRepository.findAnimalByTypeAndBreedAndGenderAndOrganizationCity(type, breed, gender, city);
+    }
+
+    public List<Animal> getAnimalByDiffParameters(String type, String breed){
+        return animalRepository.findAnimalByTypeAndBreed(type, breed);
+    }
+    public List<Animal> getAnimalByThreeParameters(String type, String breed, Animal.Gender gender){
+        return animalRepository.findAnimalByTypeAndBreedAndGender(type, breed, gender);
     }
 }

@@ -34,10 +34,6 @@ public class AnimalController {
     public List<Animal> getAnimalByName(@PathVariable String name){
         return animalService.getAnimalByName(name);
     }
-    @GetMapping("color/{color}")
-    public List<Animal> getAnimalByColor(@PathVariable String color){
-        return animalService.getAnimalByColor(color);
-    }
     @GetMapping("gender/{gender}")
     public List<Animal> getAnimalByColor(@PathVariable Animal.Gender gender){
         return animalService.getAnimalByGender(gender);
@@ -82,6 +78,21 @@ public class AnimalController {
     public void addAnimal(@RequestBody Animal animal, @PathVariable("id") int id){
 
         animalService.createAnimal(animal, id);
+    }
+
+    @GetMapping("parameters/{type}/{breed}")
+    public List<Animal> getAnimalByDiffParameters(@PathVariable String type, @PathVariable String breed){
+        return animalService.getAnimalByDiffParameters(type, breed);
+    }
+
+    @GetMapping("parameters/{type}/{breed}/{gender}")
+    public List<Animal> getAnimalByDiffParameters(@PathVariable String type, @PathVariable String breed, @PathVariable Animal.Gender gender){
+        return animalService.getAnimalByThreeParameters(type, breed, gender);
+    }
+
+    @GetMapping("parameters/{type}/{breed}/{gender}/{city}")
+    public List<Animal> getAnimalByDiffParameters(@PathVariable String type, @PathVariable String breed, @PathVariable Animal.Gender gender, @PathVariable String city){
+        return animalService.getAnimalByMostParameters(type, breed, gender, city);
     }
 
 }

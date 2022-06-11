@@ -19,7 +19,6 @@ public interface AnimalRepository extends JpaRepository<Animal, Integer> {
     @Query("FROM Animal where animal_id = :animal_id")
     Animal findAnimalById(@Param("animal_id") int animal_id);
     public List<Animal> findAnimalByName(String name);
-    public List<Animal> findAnimalByColor(String color);
     public List<Animal> findAnimalByGender(Animal.Gender gender);
     public List<Animal> findAnimalByBreed(String breed);
     public List<Animal> findAnimalByAge(int age);
@@ -32,5 +31,9 @@ public interface AnimalRepository extends JpaRepository<Animal, Integer> {
     public List<Animal> findAnimalByOrganizationCity(String city);
 
     public List<Animal> findAnimalByOrganizationState(String state);
+    public List<Animal> findAnimalByTypeAndBreedAndGenderAndOrganizationCity(String type, String breed, Animal.Gender gender, String city);
+
+    public List<Animal> findAnimalByTypeAndBreed(String type, String breed);
+    public List<Animal> findAnimalByTypeAndBreedAndGender(String type, String breed, Animal.Gender gender);
 
 }
