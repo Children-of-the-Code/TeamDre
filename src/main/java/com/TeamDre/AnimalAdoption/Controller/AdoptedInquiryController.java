@@ -42,6 +42,30 @@ public class AdoptedInquiryController {
         return adoptedInquiryService.getInquiriesByAnimalId(animalId);
     }
 
+    // Get a list of pending inquiries
+    @GetMapping("pending")
+    public List<AdoptedInquiry> getPendingInquiries(){
+        return adoptedInquiryService.getInquiriesByStatus(AdoptedInquiry.Status.Pending);
+    }
+
+    // Get a list of denied inquiries
+    @GetMapping("denied")
+    public List<AdoptedInquiry> getDeniedInquiries(){
+        return adoptedInquiryService.getInquiriesByStatus(AdoptedInquiry.Status.Denied);
+    }
+
+    // Get a list of approved inquiries
+    @GetMapping("approved")
+    public List<AdoptedInquiry> getApprovedInquiries(){
+        return adoptedInquiryService.getInquiriesByStatus(AdoptedInquiry.Status.Approved);
+    }
+
+    // Get a list of canceled inquiries
+    @GetMapping("cancelled")
+    public List<AdoptedInquiry> getCancelledInquiries(){
+        return adoptedInquiryService.getInquiriesByStatus(AdoptedInquiry.Status.Cancelled);
+    }
+
     // Update the status of an inquiry to Approved
     @PutMapping("approve/{id}")
     public void updateInquiryStatusApproved(@PathVariable("id") int inquiryId){

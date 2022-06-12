@@ -35,6 +35,10 @@ public class AdoptedInquiryService {
         return adoptedInquiryRepository.getInquiriesByAnimalId(animalId);
     }
 
+    public List<AdoptedInquiry> getInquiriesByStatus (AdoptedInquiry.Status status){
+        return adoptedInquiryRepository.getInquiriesByStatus(status);
+    }
+
     public void createInquiry(int userId, int animalId){
         AdoptedInquiry inquiry = new AdoptedInquiry();
         inquiry.setUser(userRepository.getById(userId));
