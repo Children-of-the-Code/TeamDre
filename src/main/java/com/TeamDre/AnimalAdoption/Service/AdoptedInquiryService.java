@@ -26,9 +26,13 @@ public class AdoptedInquiryService {
 
     public List<AdoptedInquiry> getAllInquiries() { return adoptedInquiryRepository.findAll(); }
 
-    public List<AdoptedInquiry> getInquiriesByUserId (int userId) { return adoptedInquiryRepository.getInquiriesByUserID(userId); }
+    public List<AdoptedInquiry> getInquiriesByUserId (int userId) {
+        return adoptedInquiryRepository.getInquiriesByUserID(userId);
+    }
 
-    public List<AdoptedInquiry> getInquiriesByAnimalId (int animalId) { return adoptedInquiryRepository.getInquiriesByAnimalId(animalId); }
+    public List<AdoptedInquiry> getInquiriesByAnimalId (int animalId) {
+        return adoptedInquiryRepository.getInquiriesByAnimalId(animalId);
+    }
 
     public void createInquiry(int userId, int animalId){
         AdoptedInquiry inquiry = new AdoptedInquiry();

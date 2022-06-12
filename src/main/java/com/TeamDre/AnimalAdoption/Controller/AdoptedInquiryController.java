@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("inquiries")
@@ -23,10 +24,10 @@ public class AdoptedInquiryController {
         return adoptedInquiryService.getAllInquiries();
     }
 
-    // Submit a new inquiry provided the user ID and animal ID
-    @PostMapping("submit/user/{userId}/animal/{animalId}")
-    public void submitInquiry(@PathVariable("userId") int userId, @PathVariable("animalId") int animalId) {
-        adoptedInquiryService.createInquiry(userId, animalId);
+    // Submit a new inquiry provided the user ID and animal ID in a JSON
+    @PostMapping("submit")
+    public void submitInquiry(@RequestBody Map<String, Object> dto) {
+        adoptedInquiryService.createInquiry(Integer.parseInt(dto.get("user_id").toString()),Integer.parseInt(dto.get("animal_id").toString()));
     }
 
     // Get a list of inquiries by the same user
