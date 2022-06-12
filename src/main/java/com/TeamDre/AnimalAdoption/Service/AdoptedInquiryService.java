@@ -55,8 +55,14 @@ public class AdoptedInquiryService {
     }
 
     public void updateInquiryStatus(int inquiryId, AdoptedInquiry.Status status ){
-        AdoptedInquiry ai = adoptedInquiryRepository.getById(inquiryId);
-        ai.setStatus(status);
-        adoptedInquiryRepository.save(ai);
+        try{
+            AdoptedInquiry ai = adoptedInquiryRepository.getById(inquiryId);
+            System.out.println(ai.toString());
+            ai.setStatus(status);
+            adoptedInquiryRepository.save(ai);
+            System.out.println("Success. Updated inquiry with the status " + status + ".");
+        }catch(EntityNotFoundException e){
+            System.out.println("Update failed. Inquiry with the ID " + inquiryId + " does not exist.");
+        }
     }
 }
