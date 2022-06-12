@@ -9,6 +9,7 @@ import com.TeamDre.AnimalAdoption.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Component
@@ -43,9 +44,14 @@ public class AdoptedInquiryService {
     }
 
     public void deleteInquiryById(int inquiryId){
-        //adoptedInquiryRepository.deleteById(inquiryId);
-        AdoptedInquiry inquiry = adoptedInquiryRepository.getById(inquiryId);
-        adoptedInquiryRepository.delete(inquiry);
+        try{
+            AdoptedInquiry inquiry = adoptedInquiryRepository.getById(inquiryId);
+            System.out.println(inquiry.toString());
+            adoptedInquiryRepository.delete(inquiry);
+            System.out.println("Success. Deleted inquiry with the ID " + inquiryId + ".");
+        }catch(EntityNotFoundException e){
+            System.out.println("Delete failed. Inquiry with the ID " + inquiryId + " does not exist.");
+        }
     }
 
     public void updateInquiryStatus(int inquiryId, AdoptedInquiry.Status status ){
