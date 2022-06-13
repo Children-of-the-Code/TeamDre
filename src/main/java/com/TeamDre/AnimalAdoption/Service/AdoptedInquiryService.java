@@ -2,6 +2,7 @@ package com.TeamDre.AnimalAdoption.Service;
 
 import com.TeamDre.AnimalAdoption.Model.AdoptedInquiry;
 
+import com.TeamDre.AnimalAdoption.Model.Donation;
 import com.TeamDre.AnimalAdoption.Repository.AdoptedInquiryRepository;
 import com.TeamDre.AnimalAdoption.Repository.AnimalRepository;
 import com.TeamDre.AnimalAdoption.Repository.UserRepository;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Component
 public class AdoptedInquiryService {
@@ -25,6 +27,16 @@ public class AdoptedInquiryService {
     }
 
     public List<AdoptedInquiry> getAllInquiries() { return adoptedInquiryRepository.findAll(); }
+
+    public AdoptedInquiry getInquiryById(int id) {
+        try{
+            AdoptedInquiry adoptedInquiry = adoptedInquiryRepository.findById(id).get();
+            return adoptedInquiry;
+        }catch(NoSuchElementException e){
+            System.out.println("Inquiry with the ID " + id + " not found.");
+            return null;
+        }
+    }
 
     public List<AdoptedInquiry> getInquiriesByUserId (int userId) {
         return adoptedInquiryRepository.getInquiriesByUserID(userId);

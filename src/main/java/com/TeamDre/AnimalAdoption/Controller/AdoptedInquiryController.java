@@ -1,7 +1,6 @@
 package com.TeamDre.AnimalAdoption.Controller;
 
 import com.TeamDre.AnimalAdoption.Model.AdoptedInquiry;
-import com.TeamDre.AnimalAdoption.Model.User;
 import com.TeamDre.AnimalAdoption.Service.AdoptedInquiryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +21,12 @@ public class AdoptedInquiryController {
     @GetMapping
     public List<AdoptedInquiry> getAllInquiries(){
         return adoptedInquiryService.getAllInquiries();
+    }
+
+    // Get Inquiry by ID
+    @GetMapping("id/{id}")
+    public AdoptedInquiry getInquiryById(@PathVariable("id") int id){
+        return adoptedInquiryService.getInquiryById(id);
     }
 
     // Submit a new inquiry provided the user ID and animal ID in a JSON

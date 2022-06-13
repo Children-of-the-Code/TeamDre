@@ -1,16 +1,13 @@
 package com.TeamDre.AnimalAdoption.Service;
 
-import com.TeamDre.AnimalAdoption.Model.AdoptedInquiry;
 import com.TeamDre.AnimalAdoption.Model.Donation;
 
 import com.TeamDre.AnimalAdoption.Repository.DonationRepository;
 import com.TeamDre.AnimalAdoption.Repository.OrganizationRepository;
 import com.TeamDre.AnimalAdoption.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
