@@ -1,8 +1,7 @@
 package com.TeamDre.AnimalAdoption.Service;
 
 import com.TeamDre.AnimalAdoption.Model.AdoptedInquiry;
-import com.TeamDre.AnimalAdoption.Model.Animal;
-import com.TeamDre.AnimalAdoption.Model.User;
+
 import com.TeamDre.AnimalAdoption.Repository.AdoptedInquiryRepository;
 import com.TeamDre.AnimalAdoption.Repository.AnimalRepository;
 import com.TeamDre.AnimalAdoption.Repository.UserRepository;
