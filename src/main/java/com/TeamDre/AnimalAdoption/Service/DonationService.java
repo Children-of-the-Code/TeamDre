@@ -8,6 +8,7 @@ import com.TeamDre.AnimalAdoption.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -35,6 +36,24 @@ public class DonationService {
             System.out.println("Donation with the ID " + id + " not found.");
             return null;
         }
+    }
+
+    public List<Donation> getDonationsByUserId(int userId){
+        return donationRepository.getDonationsByUserId(userId);
+    }
+
+    public List<Donation> getDonationsByOrgId(int orgId){
+        return donationRepository.getDonationsByOrgId(orgId);
+    }
+
+    public double getTotalAmountDonatedToOrg(int orgId){
+        double result = 0;
+        List<Donation> donations = new ArrayList<Donation>();
+        donations.addAll(donationRepository.getDonationsByOrgId(orgId));
+        for(Donation d: donations){
+            result += d.getAmount();
+        }
+        return result;
     }
 
     public void createDonation(double amount, int userId, int orgId){
