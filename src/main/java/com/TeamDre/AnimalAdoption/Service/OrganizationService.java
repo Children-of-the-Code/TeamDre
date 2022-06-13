@@ -45,11 +45,11 @@ public class OrganizationService {
         return organizationRepository.findOrganizationByUsername(name);
     }
 
-    public Organization getOrganizationbyCity(String city){
+    public List<Organization> getOrganizationbyCity(String city){
         return organizationRepository.findByCity(city);
     }
 
-    public Organization getOrganizationByState(String state){
+    public List<Organization> getOrganizationByState(String state){
         return organizationRepository.findByState(state);
     }
 
