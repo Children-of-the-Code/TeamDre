@@ -1,5 +1,6 @@
 package com.TeamDre.AnimalAdoption.Controller;
 
+import com.TeamDre.AnimalAdoption.Model.AdoptedInquiry;
 import com.TeamDre.AnimalAdoption.Model.Donation;
 import com.TeamDre.AnimalAdoption.Service.DonationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,19 @@ public class DonationController {
         return donationService.getAllDonations();
     }
 
+    // Get transaction by ID
+    @GetMapping("id/{id}")
+    public Donation getDonationById(@PathVariable("id") int id){
+        return donationService.getDonationById(id);
+    }
+
+    // List transactions by User
+
+    // List donations to a certain organization
+
+    // List total amount donated to an organization
+
+    // Submit a new donation provided amount, user ID, and organization ID in a JSON
     @PostMapping("submit")
     public void submitDonation(@RequestBody Map<String, Object> dto){
         donationService.createDonation(Double.parseDouble(dto.get("amount").toString()),
