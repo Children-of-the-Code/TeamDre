@@ -47,5 +47,4 @@ public class AnimalController {
     public List<Animal> sale(@PathVariable("id") int id, @RequestBody Map<String, Object> dto){
         return animalService.addSale(id, dto);
     }
-
 }

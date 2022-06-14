@@ -152,6 +152,27 @@ public class AnimalService {
             master=temp1;
             temp1=new ArrayList<>();
         }
+
+        //fee parameter
+        if (!dto.get("fee").toString().equals("0")||!dto.get("fee2").toString().equals("0")){
+            float feemin=Integer.MIN_VALUE;
+            float feemax=Integer.MAX_VALUE;
+
+            if(!dto.get("fee").toString().equals("0")) {
+                feemin = Float.parseFloat(dto.get("fee").toString());
+            }
+            if(!dto.get("fee2").toString().equals("0")) {
+                feemax = Float.parseFloat(dto.get("fee2").toString());
+            }
+            for(Animal a:master){
+                if (a.getFee()>=feemin&&a.getFee()<=feemax){
+                    temp1.add(a);
+                    System.out.println(a);
+                }
+            }
+            master=temp1;
+            temp1=new ArrayList<>();
+        }
         return master;
     }
 
