@@ -47,6 +47,12 @@ public class AdoptedInquiryController {
         return adoptedInquiryService.getInquiriesByAnimalId(animalId);
     }
 
+    // Get inquiry by organization
+    @GetMapping("organization/{id}")
+    public List<AdoptedInquiry> getInquiriesByOrgId(@PathVariable("id") int orgId){
+        return adoptedInquiryService.getInquiriesByOrgId(orgId);
+    }
+
     // Get a list of pending inquiries
     @GetMapping("pending")
     public List<AdoptedInquiry> getPendingInquiries(){

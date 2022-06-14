@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,6 +20,8 @@ public class AdoptedInquiry {
     private int inquiry_id;
     @Column
     private Status status;
+    @Column
+    private Date date_added;
     @ManyToOne
     @JoinColumn(name="user_id", nullable = false)
     private User user;

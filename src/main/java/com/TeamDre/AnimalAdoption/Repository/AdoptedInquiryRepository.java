@@ -16,4 +16,6 @@ public interface AdoptedInquiryRepository extends JpaRepository<AdoptedInquiry, 
     public List<AdoptedInquiry> getInquiriesByAnimalId(@Param("id") int id);
     @Query("FROM AdoptedInquiry WHERE status = :status")
     public List<AdoptedInquiry> getInquiriesByStatus(@Param("status") AdoptedInquiry.Status status);
+    //@Query("FROM AdoptedInquiry INNER JOIN Animal on AdoptedInquiry.animal_id = Animal.animal_id WHERE org_id = :id")
+    //public List<AdoptedInquiry> getInquiriesByOrgId(@Param("id") int id);
 }

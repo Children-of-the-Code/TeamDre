@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -46,6 +48,19 @@ public class AdoptedInquiryService {
         return adoptedInquiryRepository.getInquiriesByAnimalId(animalId);
     }
 
+    public List<AdoptedInquiry> getInquiriesByOrgId (int orgId) {
+        List<AdoptedInquiry> allInquiries = new ArrayList<AdoptedInquiry>();
+        List<AdoptedInquiry> inquiriesWithOrgId = new ArrayList<AdoptedInquiry>();
+        allInquiries = adoptedInquiryRepository.findAll();
+        for(AdoptedInquiry a: allInquiries){
+            if(a.getAnimal().getOrganization().getOrg_id() == orgId){
+                inquiriesWithOrgId.add(a);
+            }
+        }
+        return inquiriesWithOrgId;
+        //return adoptedInquiryRepository.getInquiriesByOrgId(orgId);
+    }
+
     public List<AdoptedInquiry> getInquiriesByStatus (AdoptedInquiry.Status status){
         return adoptedInquiryRepository.getInquiriesByStatus(status);
     }
@@ -54,6 +69,8 @@ public class AdoptedInquiryService {
         AdoptedInquiry inquiry = new AdoptedInquiry();
         inquiry.setUser(userRepository.getById(userId));
         inquiry.setAnimal(animalRepository.getById(animalId));
+        Date currentDate = new Date();
+        inquiry.setDate_added(currentDate);
         inquiry.setStatus(AdoptedInquiry.Status.Pending);
         adoptedInquiryRepository.save(inquiry);
     }
