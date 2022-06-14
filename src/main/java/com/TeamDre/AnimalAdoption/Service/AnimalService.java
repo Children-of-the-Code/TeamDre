@@ -80,7 +80,6 @@ public class AnimalService {
     public List<Animal> search(Map<String, Object> dto) {
         List<Animal> master = animalRepository.findAll();
         List<Animal> temp1 = new ArrayList<>();
-
         //age parameter
         if (!dto.get("age").toString().equals("0")||!dto.get("age2").toString().equals("0")){
             int agemin=Integer.MIN_VALUE;
@@ -100,7 +99,6 @@ public class AnimalService {
             master=temp1;
             temp1=new ArrayList<>();
         }
-
         //gender parameter
         if (temp1.isEmpty()&&!dto.get("gender").toString().equals("")){
             for(Animal a:master){
@@ -111,7 +109,6 @@ public class AnimalService {
             master=temp1;
             temp1=new ArrayList<>();
         }
-
         //temperament parameter
         if (!dto.get("temperament").toString().isEmpty()){
 
@@ -124,7 +121,6 @@ public class AnimalService {
             temp1=new ArrayList<>();
 
         }
-
         //organization parameter
         if (!dto.get("organization").toString().equals("0")){
             for(Animal a:master){
@@ -135,7 +131,6 @@ public class AnimalService {
             master=temp1;
             temp1=new ArrayList<>();
         }
-
         //city parameter
         if (!dto.get("city").toString().isEmpty()){
             for(Animal a:master){
@@ -146,7 +141,6 @@ public class AnimalService {
             master=temp1;
             temp1=new ArrayList<>();
         }
-
         //state parameter
 
         if (!dto.get("state").toString().isEmpty()){
@@ -158,11 +152,7 @@ public class AnimalService {
             master=temp1;
             temp1=new ArrayList<>();
         }
-
-
         return master;
-
-
     }
 
 
