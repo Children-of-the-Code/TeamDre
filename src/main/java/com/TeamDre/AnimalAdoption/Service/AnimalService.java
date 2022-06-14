@@ -164,4 +164,32 @@ public class AnimalService {
 
 
     }
+
+
+    public List<Animal> addSale(int id, Map<String, Object> dto) {
+        Organization org=organizationRepository.findById(id).get();
+        List<Animal> animals=animalRepository.findAnimalByOrganization(org);
+        float prevSale=(100-org.getSale())/100;
+
+        float newSale=(100-Float.parseFloat(dto.get("sale").toString()))/100;
+        for (Animal a:animals){
+            float temp=a.getFee();
+            System.out.println(temp);
+            System.out.println(prevSale);
+            System.out.println(temp/prevSale);
+            a.setFee(temp/prevSale);
+            System.out.println(a);
+            animalRepository.save(a);
+        }
+        for (Animal a:animals){
+            float temp=a.getFee();
+            System.out.println(temp);
+            System.out.println(temp/newSale);
+            a.setFee(temp*newSale);
+            animalRepository.save(a);
+        }
+        org.setSale(Float.parseFloat(dto.get("sale").toString()));
+        organizationRepository.save(org);
+        return animals;
+    }
 }

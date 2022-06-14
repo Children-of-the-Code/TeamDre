@@ -43,4 +43,9 @@ public class AnimalController {
         return animalService.search(dto);
     }
 
+    @PostMapping("sale/{id}")
+    public List<Animal> sale(@PathVariable("id") int id, @RequestBody Map<String, Object> dto){
+        return animalService.addSale(id, dto);
+    }
+
 }
