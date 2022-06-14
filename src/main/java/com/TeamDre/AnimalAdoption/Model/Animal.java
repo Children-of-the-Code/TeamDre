@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+
+import java.io.Serializable;
 import java.util.Date;
 
 
@@ -15,7 +17,7 @@ import java.util.Date;
 @Data
 @ToString
 @Entity
-public class Animal {
+public class Animal implements Serializable {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)

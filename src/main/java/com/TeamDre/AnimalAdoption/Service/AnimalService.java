@@ -6,10 +6,7 @@ import com.TeamDre.AnimalAdoption.Repository.OrganizationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Component
 public class AnimalService {
@@ -78,5 +75,84 @@ public class AnimalService {
 
     public List<Animal> getAnimalByAgeIn(Set<Integer> ages){
         return animalRepository.findAnimalByAgeIn(ages);
+    }
+
+    public List<Animal> search(Map<String, Object> dto) {
+        List<Animal> master = animalRepository.findAll();
+        List<Animal> temp1 = new ArrayList<>();
+
+        //age parameter
+        if (!dto.get("age").toString().equals("0")){
+            for(Animal a:master){
+                if (a.getAge()==Integer.parseInt(dto.get("age").toString())){
+                    temp1.add(a);
+                }
+            }
+            master=temp1;
+            temp1=new ArrayList<>();
+        }
+
+        //gender parameter
+        if (temp1.isEmpty()&&!dto.get("gender").toString().equals("")){
+            for(Animal a:master){
+                if (a.getGender().toString().equals(dto.get("gender").toString())){
+                    temp1.add(a);
+                }
+            }
+            master=temp1;
+            temp1=new ArrayList<>();
+        }
+
+        //temperament parameter
+        if (!dto.get("temperament").toString().isEmpty()){
+
+            for(Animal a:master){
+                if (a.getTemperament().toString().equals(dto.get("temperament").toString())){
+                    temp1.add(a);
+                }
+            }
+            master=temp1;
+            temp1=new ArrayList<>();
+
+        }
+
+        //organization parameter
+        if (!dto.get("organization").toString().equals("0")){
+            for(Animal a:master){
+                if(a.getOrganization().getOrg_id()==Integer.parseInt(dto.get("organization").toString())){
+                    temp1.add(a);
+                }
+            }
+            master=temp1;
+            temp1=new ArrayList<>();
+        }
+
+        //city parameter
+        if (!dto.get("city").toString().isEmpty()){
+            for(Animal a:master){
+                if(a.getOrganization().getCity().equals(dto.get("city").toString())){
+                    temp1.add(a);
+                }
+            }
+            master=temp1;
+            temp1=new ArrayList<>();
+        }
+
+        //state parameter
+
+        if (!dto.get("state").toString().isEmpty()){
+            for(Animal a:master){
+                if(a.getOrganization().getState().equals(dto.get("state").toString())){
+                    temp1.add(a);
+                }
+            }
+            master=temp1;
+            temp1=new ArrayList<>();
+        }
+
+
+        return master;
+
+
     }
 }
