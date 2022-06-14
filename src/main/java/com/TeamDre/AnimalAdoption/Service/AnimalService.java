@@ -82,10 +82,19 @@ public class AnimalService {
         List<Animal> temp1 = new ArrayList<>();
 
         //age parameter
-        if (!dto.get("age").toString().equals("0")){
+        if (!dto.get("age").toString().equals("0")||!dto.get("age2").toString().equals("0")){
+            int agemin=Integer.MIN_VALUE;
+            int agemax=Integer.MAX_VALUE;
+            if(!dto.get("age").toString().equals("0")) {
+                agemin = Integer.parseInt(dto.get("age").toString());
+            }
+            if(!dto.get("age2").toString().equals("0")) {
+                agemax = Integer.parseInt(dto.get("age2").toString());
+            }
             for(Animal a:master){
-                if (a.getAge()==Integer.parseInt(dto.get("age").toString())){
+                if (a.getAge()>=agemin&&a.getAge()<=agemax){
                     temp1.add(a);
+                    System.out.println(a);
                 }
             }
             master=temp1;
