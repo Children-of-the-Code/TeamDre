@@ -35,7 +35,7 @@ public class Animal implements Serializable {
     @Column
     private Temperament temperament;
     @Column
-    private int fee;
+    private Float fee;
 
     @ManyToOne
     @JoinColumn(name="org_id", nullable = false)
