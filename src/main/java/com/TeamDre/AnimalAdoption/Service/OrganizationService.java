@@ -2,6 +2,7 @@ package com.TeamDre.AnimalAdoption.Service;
 import com.TeamDre.AnimalAdoption.Model.Organization;
 import com.TeamDre.AnimalAdoption.Model.User;
 import com.TeamDre.AnimalAdoption.Repository.OrganizationRepository;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -42,6 +43,14 @@ public class OrganizationService {
 
     public Organization getOrganizationbyUsername(String name) {
         return organizationRepository.findOrganizationByUsername(name);
+    }
+
+    public List<Organization> getOrganizationbyCity(String city){
+        return organizationRepository.findByCity(city);
+    }
+
+    public List<Organization> getOrganizationByState(String state){
+        return organizationRepository.findByState(state);
     }
 
     public String changePassword(int id, String s) {

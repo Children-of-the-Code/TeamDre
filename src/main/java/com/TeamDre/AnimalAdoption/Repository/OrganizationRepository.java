@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 
 @Transactional
@@ -21,5 +22,9 @@ public interface OrganizationRepository extends JpaRepository<Organization, Inte
     Organization findByOrg_id(@Param("org_id")int org_id);
 
     Organization findOrganizationByUsername(String name);
+    @Query("from Organization where city= :city")
+    List<Organization> findByCity(@Param("city") String city);
+    @Query("from Organization where state= :state")
+    List<Organization> findByState(@Param("state") String state);
 
 }
