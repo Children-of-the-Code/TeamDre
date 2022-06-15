@@ -53,46 +53,16 @@ public class AdoptedInquiryController {
         return adoptedInquiryService.getInquiriesByOrgId(orgId);
     }
 
-    // Get a list of pending inquiries
-    @GetMapping("pending")
-    public List<AdoptedInquiry> getPendingInquiries(){
-        return adoptedInquiryService.getInquiriesByStatus(AdoptedInquiry.Status.Pending);
+    // Get a list of inquiries by status
+    @GetMapping("status/{status}")
+    public List<AdoptedInquiry> getPendingInquiries(@PathVariable("status") AdoptedInquiry.Status status){
+        return adoptedInquiryService.getInquiriesByStatus(status);
     }
 
-    // Get a list of denied inquiries
-    @GetMapping("denied")
-    public List<AdoptedInquiry> getDeniedInquiries(){
-        return adoptedInquiryService.getInquiriesByStatus(AdoptedInquiry.Status.Denied);
-    }
-
-    // Get a list of approved inquiries
-    @GetMapping("approved")
-    public List<AdoptedInquiry> getApprovedInquiries(){
-        return adoptedInquiryService.getInquiriesByStatus(AdoptedInquiry.Status.Approved);
-    }
-
-    // Get a list of canceled inquiries
-    @GetMapping("cancelled")
-    public List<AdoptedInquiry> getCancelledInquiries(){
-        return adoptedInquiryService.getInquiriesByStatus(AdoptedInquiry.Status.Cancelled);
-    }
-
-    // Update the status of an inquiry to Approved
-    @PutMapping("approve/{id}")
-    public void updateInquiryStatusApproved(@PathVariable("id") int inquiryId){
-        adoptedInquiryService.updateInquiryStatus(inquiryId, AdoptedInquiry.Status.Approved);
-    }
-
-    // Update the status of an inquiry to Denied
-    @PutMapping("deny/{id}")
-    public void updateInquiryStatusDenied(@PathVariable("id") int inquiryId){
-        adoptedInquiryService.updateInquiryStatus(inquiryId, AdoptedInquiry.Status.Denied);
-    }
-
-    // Update the status of an inquiry to Canceled
-    @PutMapping("cancel/{id}")
-    public void updateInquiryStatusCancelled(@PathVariable("id") int inquiryId){
-        adoptedInquiryService.updateInquiryStatus(inquiryId, AdoptedInquiry.Status.Cancelled);
+    // Update the status of an inquiry
+    @PutMapping("status")
+    public void updateInquiryStatusApproved(@RequestBody Map<String, Object> dto){
+        adoptedInquiryService.updateInquiryStatus(Integer.parseInt(dto.get("inquiry_id").toString()), AdoptedInquiry.Status.valueOf(dto.get("status").toString()));
     }
 
     // Delete an inquiry by the ID

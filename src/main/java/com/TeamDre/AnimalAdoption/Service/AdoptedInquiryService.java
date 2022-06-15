@@ -90,9 +90,13 @@ public class AdoptedInquiryService {
         try{
             AdoptedInquiry ai = adoptedInquiryRepository.getById(inquiryId);
             System.out.println(ai.toString());
-            ai.setStatus(status);
-            adoptedInquiryRepository.save(ai);
-            System.out.println("Success. Updated inquiry with the status " + status + ".");
+            if(status != AdoptedInquiry.Status.Pending){
+                ai.setStatus(status);
+                adoptedInquiryRepository.save(ai);
+                System.out.println("Success. Updated inquiry with the status " + status + ".");
+            } else {
+                System.out.println("Update failed. Cannot set inquiry to pending once it has already been processed.");
+            }
         }catch(EntityNotFoundException e){
             System.out.println("Update failed. Inquiry with the ID " + inquiryId + " does not exist.");
         }
