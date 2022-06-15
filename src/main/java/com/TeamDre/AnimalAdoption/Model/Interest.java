@@ -14,12 +14,10 @@ import javax.persistence.*;
 @Entity
 public class Interest {
     @Id
-    @Column
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int favorite_id;
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+    @Id
     @ManyToOne
     @JoinColumn(name = "animal_id", nullable = false)
     private Animal animal;
