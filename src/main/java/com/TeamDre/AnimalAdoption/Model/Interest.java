@@ -21,6 +21,6 @@ public class Interest {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
     @ManyToOne
-    @JoinColumn(name = "org_id", nullable = false)
-    private Organization organization;
+    @JoinColumn(name = "animal_id", nullable = false)
+    private Animal animal;
 }
