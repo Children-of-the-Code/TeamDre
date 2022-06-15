@@ -62,24 +62,36 @@ public class AnimalService {
         animal.setOrganization(u);
         animalRepository.save(animal);
     }
-    public List<Animal> getAnimalByMostParameters(String type, String breed,  Animal.Gender gender, String city){
-        return animalRepository.findAnimalByTypeAndBreedAndGenderAndOrganizationCity(type, breed, gender, city);
-    }
-
-    public List<Animal> getAnimalByDiffParameters(String type, String breed){
-        return animalRepository.findAnimalByTypeAndBreed(type, breed);
-    }
-    public List<Animal> getAnimalByThreeParameters(String type, String breed, Animal.Gender gender){
-        return animalRepository.findAnimalByTypeAndBreedAndGender(type, breed, gender);
-    }
-
-    public List<Animal> getAnimalByAgeIn(Set<Integer> ages){
-        return animalRepository.findAnimalByAgeIn(ages);
-    }
 
     public List<Animal> search(Map<String, Object> dto) {
         List<Animal> master = animalRepository.findAll();
         List<Animal> temp1 = new ArrayList<>();
+
+        if (!dto.get("breed").toString().isEmpty()||!dto.get("breed2").toString().isEmpty()||!dto.get("breed3").toString().isEmpty()){
+            if (!dto.get("breed").toString().isEmpty()){
+                for (Animal a:master){
+                    if (a.getBreed().equals(dto.get("breed").toString())){
+                        temp1.add(a);
+                    }
+                }
+            }
+            if (!dto.get("breed2").toString().isEmpty()){
+                for (Animal a:master){
+                    if (a.getBreed().equals(dto.get("breed2").toString())){
+                        temp1.add(a);
+                    }
+                }
+            }
+            if (!dto.get("breed3").toString().isEmpty()){
+                for (Animal a:master){
+                    if (a.getBreed().equals(dto.get("breed3").toString())){
+                        temp1.add(a);
+                    }
+                }
+            }
+            master=temp1;
+            temp1=new ArrayList<>();
+        }
         //age parameter
         if (!dto.get("age").toString().equals("0")||!dto.get("age2").toString().equals("0")){
             int agemin=Integer.MIN_VALUE;
@@ -173,6 +185,33 @@ public class AnimalService {
             master=temp1;
             temp1=new ArrayList<>();
         }
+        if(dto.get("sortby").equals("name")) {
+            Collections.sort(master, new Comparator<Animal>() {
+                @Override
+                public int compare(Animal o1, Animal o2) {
+                    if(dto.get("orderby").toString().isEmpty()) {
+                        return o1.getName().compareTo((o2.getName()));
+                    }else{
+                        return o2.getName().compareTo((o1.getName()));
+                    }
+
+                }
+            });
+        }
+        if(dto.get("sortby").equals("temperament")) {
+            Collections.sort(master, new Comparator<Animal>() {
+                @Override
+                public int compare(Animal o1, Animal o2) {
+                    if(dto.get("orderby").toString().isEmpty()) {
+                        return o1.getTemperament().compareTo((o2.getTemperament()));
+                    }
+                    else{
+                        return o2.getTemperament().compareTo((o1.getTemperament()));
+                    }
+                }
+            });
+        }
+
         return master;
     }
 

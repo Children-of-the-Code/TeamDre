@@ -32,10 +32,4 @@ public interface AnimalRepository extends JpaRepository<Animal, Integer> {
     public List<Animal> findAnimalByOrganizationCity(String city);
 
     public List<Animal> findAnimalByOrganizationState(String state);
-    public List<Animal> findAnimalByTypeAndBreedAndGenderAndOrganizationCity(String type, String breed, Animal.Gender gender, String city);
-
-    public List<Animal> findAnimalByTypeAndBreed(String type, String breed);
-    public List<Animal> findAnimalByTypeAndBreedAndGender(String type, String breed, Animal.Gender gender);
-    public List<Animal> findAnimalByAgeIn(Set<Integer> age);
-
 }
