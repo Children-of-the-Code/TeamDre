@@ -149,16 +149,6 @@ public class AnimalService {
             temp1=new ArrayList<>();
         }
 
-        //organization parameter
-        if (!dto.get("organization").toString().equals("0")){
-            for(Animal a:master){
-                if(a.getOrganization().getOrg_id()==Integer.parseInt(dto.get("organization").toString())){
-                    temp1.add(a);
-                }
-            }
-            master=temp1;
-            temp1=new ArrayList<>();
-        }
 
         //city parameter
         if (!dto.get("city").toString().isEmpty()){
