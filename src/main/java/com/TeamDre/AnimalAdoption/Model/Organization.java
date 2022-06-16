@@ -42,3 +42,4 @@ public class Organization {
     @Column
     private Float sale;
 }
+

@@ -38,6 +38,7 @@ public class AnimalController {
         animalService.createAnimal(animal, id);
     }
 
+
     @PostMapping("search")
     public List<Animal> search(@RequestBody Map<String, Object> dto){
         return animalService.search(dto);
@@ -48,3 +49,4 @@ public class AnimalController {
         return animalService.addSale(id, dto);
     }
 }
+

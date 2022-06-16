@@ -63,6 +63,7 @@ public class AnimalService {
         animalRepository.save(animal);
     }
 
+
     public List<Animal> search(Map<String, Object> dto) {
         List<Animal> master = animalRepository.findAll();
         List<Animal> temp1 = new ArrayList<>();
@@ -310,3 +311,4 @@ public class AnimalService {
         return animals;
     }
 }
+

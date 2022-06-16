@@ -29,7 +29,11 @@ public interface AnimalRepository extends JpaRepository<Animal, Integer> {
     Animal findAnimalByDateAdded(@Param("date_added") Date date_added);
     public List<Animal> findAnimalByTemperament(Animal.Temperament temperament);
 
+
     public List<Animal> findAnimalByOrganizationCity(String city);
 
     public List<Animal> findAnimalByOrganizationState(String state);
 }
+
+
+
