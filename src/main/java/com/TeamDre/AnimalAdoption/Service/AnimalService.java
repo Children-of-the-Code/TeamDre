@@ -67,31 +67,45 @@ public class AnimalService {
         List<Animal> master = animalRepository.findAll();
         List<Animal> temp1 = new ArrayList<>();
 
+        //type parameter
+        if(!dto.get("type").toString().isEmpty()){
+            for(Animal a:master){
+                if (a.getType().toString().equals(dto.get("type").toString())){
+                    temp1.add(a);
+                }
+            }
+            master=temp1;
+            temp1=new ArrayList<>();
+        }
+
+        //breed parameter
         if (!dto.get("breed").toString().isEmpty()||!dto.get("breed2").toString().isEmpty()||!dto.get("breed3").toString().isEmpty()){
             if (!dto.get("breed").toString().isEmpty()){
                 for (Animal a:master){
-                    if (a.getBreed().equals(dto.get("breed").toString())){
+                    if (a.getBreed().toString().equals(dto.get("breed").toString())){
                         temp1.add(a);
                     }
                 }
             }
             if (!dto.get("breed2").toString().isEmpty()){
                 for (Animal a:master){
-                    if (a.getBreed().equals(dto.get("breed2").toString())){
+                    if (a.getBreed().toString().equals(dto.get("breed2").toString())){
                         temp1.add(a);
                     }
                 }
             }
             if (!dto.get("breed3").toString().isEmpty()){
                 for (Animal a:master){
-                    if (a.getBreed().equals(dto.get("breed3").toString())){
+                    if (a.getBreed().toString().equals(dto.get("breed3").toString())){
                         temp1.add(a);
                     }
                 }
             }
+            System.out.println(temp1);
             master=temp1;
             temp1=new ArrayList<>();
         }
+
         //age parameter
         if (!dto.get("age").toString().equals("0")||!dto.get("age2").toString().equals("0")){
             int agemin=Integer.MIN_VALUE;
@@ -111,6 +125,7 @@ public class AnimalService {
             master=temp1;
             temp1=new ArrayList<>();
         }
+
         //gender parameter
         if (temp1.isEmpty()&&!dto.get("gender").toString().equals("")){
             for(Animal a:master){
@@ -121,6 +136,7 @@ public class AnimalService {
             master=temp1;
             temp1=new ArrayList<>();
         }
+
         //temperament parameter
         if (!dto.get("temperament").toString().isEmpty()){
 
@@ -131,8 +147,8 @@ public class AnimalService {
             }
             master=temp1;
             temp1=new ArrayList<>();
-
         }
+
         //organization parameter
         if (!dto.get("organization").toString().equals("0")){
             for(Animal a:master){
@@ -143,6 +159,7 @@ public class AnimalService {
             master=temp1;
             temp1=new ArrayList<>();
         }
+
         //city parameter
         if (!dto.get("city").toString().isEmpty()){
             for(Animal a:master){
@@ -153,8 +170,8 @@ public class AnimalService {
             master=temp1;
             temp1=new ArrayList<>();
         }
-        //state parameter
 
+        //state parameter
         if (!dto.get("state").toString().isEmpty()){
             for(Animal a:master){
                 if(a.getOrganization().getState().equals(dto.get("state").toString())){
@@ -185,6 +202,21 @@ public class AnimalService {
             master=temp1;
             temp1=new ArrayList<>();
         }
+
+        //gets along parameter
+        if (!dto.get("gets_along").toString().isEmpty()){
+            for(Animal a:master){
+                if(a.getGets_along().toString().equals(dto.get("gets_along").toString())){
+                    temp1.add(a);
+                }
+            }
+            master=temp1;
+            temp1=new ArrayList<>();
+        }
+
+
+
+        //sort parameters
         if(dto.get("sortby").equals("name")) {
             Collections.sort(master, new Comparator<Animal>() {
                 @Override
@@ -194,7 +226,6 @@ public class AnimalService {
                     }else{
                         return o2.getName().compareTo((o1.getName()));
                     }
-
                 }
             });
         }
@@ -207,6 +238,58 @@ public class AnimalService {
                     }
                     else{
                         return o2.getTemperament().compareTo((o1.getTemperament()));
+                    }
+                }
+            });
+        }
+        if(dto.get("sortby").equals("date")) {
+            Collections.sort(master, new Comparator<Animal>() {
+                @Override
+                public int compare(Animal o1, Animal o2) {
+                    if(dto.get("orderby").toString().isEmpty()) {
+                        return o1.getDate_added().compareTo((o2.getDate_added()));
+                    }
+                    else{
+                        return o2.getDate_added().compareTo((o1.getDate_added()));
+                    }
+                }
+            });
+        }
+        if(dto.get("sortby").equals("age")) {
+            Collections.sort(master, new Comparator<Animal>() {
+                @Override
+                public int compare(Animal o1, Animal o2) {
+                    if(dto.get("orderby").toString().isEmpty()) {
+                        return o1.getAge()-((o2.getAge()));
+                    }
+                    else{
+                        return o2.getAge()-((o1.getAge()));
+                    }
+                }
+            });
+        }
+        if(dto.get("sortby").equals("fee")) {
+            Collections.sort(master, new Comparator<Animal>() {
+                @Override
+                public int compare(Animal o1, Animal o2) {
+                    if(dto.get("orderby").toString().isEmpty()) {
+                        return Float.compare(o1.getFee(),o2.getFee());
+                    }
+                    else{
+                        return Float.compare(o2.getFee(),o1.getFee());
+                    }
+                }
+            });
+        }
+        if(dto.get("sortby").equals("breed")) {
+            Collections.sort(master, new Comparator<Animal>() {
+                @Override
+                public int compare(Animal o1, Animal o2) {
+                    if(dto.get("orderby").toString().isEmpty()) {
+                        return o1.getBreed().compareTo((o2.getBreed()));
+                    }
+                    else{
+                        return o2.getBreed().compareTo((o1.getBreed()));
                     }
                 }
             });
@@ -224,17 +307,11 @@ public class AnimalService {
         float newSale=(100-Float.parseFloat(dto.get("sale").toString()))/100;
         for (Animal a:animals){
             float temp=a.getFee();
-            System.out.println(temp);
-            System.out.println(prevSale);
-            System.out.println(temp/prevSale);
             a.setFee(temp/prevSale);
-            System.out.println(a);
             animalRepository.save(a);
         }
         for (Animal a:animals){
             float temp=a.getFee();
-            System.out.println(temp);
-            System.out.println(temp/newSale);
             a.setFee(temp*newSale);
             animalRepository.save(a);
         }

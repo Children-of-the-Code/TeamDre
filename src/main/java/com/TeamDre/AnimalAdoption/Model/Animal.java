@@ -6,8 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
-
-import java.io.Serializable;
 import java.util.Date;
 
 
@@ -17,7 +15,7 @@ import java.util.Date;
 @Data
 @ToString
 @Entity
-public class Animal implements Serializable {
+public class Animal {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,18 +33,22 @@ public class Animal implements Serializable {
     @Column
     private Temperament temperament;
     @Column
-    private Float fee;
+    private float fee;
 
     @ManyToOne
     @JoinColumn(name="org_id", nullable = false)
     private Organization organization;
     @Column
-    private String type;
+    private Type type;
     @Column
-    private String breed;
+    private Breed breed;
     @Column
-    private String gets_along;
+    private GetsAlong gets_along;
 
+    public enum Type{
+        Dog,
+        Cat
+    }
     public enum Temperament{
         Mild,
         Medium,
@@ -55,6 +57,46 @@ public class Animal implements Serializable {
     }
     public enum Gender{
         Male,
-        Female
+        Female,
+        Unknown
+    }
+    public enum GetsAlong{
+        Dogs,
+        Cats,
+        kids,
+        AllAnimals,
+        AllAnimalKids,
+        None
+    }
+    public enum Breed{
+        Abyssinian,
+        Aussiedoodle,
+        Beagle,
+        Bombay,
+        Bulldog,
+        Calico,
+        Chihuahua,
+        Dalmatian,
+        Feist,
+        Greyhound,
+        Havana,
+        Hound,
+        Husky,
+        Jindo,
+        Labrador,
+        Manx,
+        Mastiff,
+        Mix,
+        Persian,
+        Puppy,
+        Ocicat,
+        Other,
+        Ragdoll,
+        Rottweiler,
+        Shepherd,
+        Siamese,
+        Sphynx,
+        Tabby,
+        Tuxedo
     }
 }
