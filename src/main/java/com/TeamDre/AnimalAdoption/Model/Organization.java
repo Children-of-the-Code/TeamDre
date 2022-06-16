@@ -39,4 +39,6 @@ public class Organization {
     private String email;
     @Column
     private String description;
+    @Column
+    private Float sale;
 }

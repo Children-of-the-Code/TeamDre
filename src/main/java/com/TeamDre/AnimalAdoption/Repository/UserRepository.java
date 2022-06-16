@@ -12,7 +12,8 @@ import javax.transaction.Transactional;
 @Transactional
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-
+    @Query("FROM User where username = :username")
+    User findUserBYUsername(@Param("username") String username);
 
 
 
