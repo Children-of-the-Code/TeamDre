@@ -27,13 +27,13 @@ public class AnimalService {
     public List<Animal> getAnimalByName(String name){
         return animalRepository.findAnimalByName(name);
     }
-    public List<Animal> getAnimalByType(String type){
+    public List<Animal> getAnimalByType(Animal.Type type){
         return animalRepository.findAnimalByType(type);
     }
     public List<Animal> getAnimalByGender(Animal.Gender gender){
         return animalRepository.findAnimalByGender(gender);
     }
-    public List<Animal> getAnimalByBreed(String breed){
+    public List<Animal> getAnimalByBreed(Animal.Breed breed){
         return animalRepository.findAnimalByBreed(breed);
     }
     public List<Animal> getAnimalByTemperament(Animal.Temperament temperament){

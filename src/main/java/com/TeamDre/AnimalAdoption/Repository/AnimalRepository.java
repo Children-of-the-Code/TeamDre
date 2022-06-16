@@ -16,12 +16,12 @@ import java.util.Set;
 @Transactional
 public interface AnimalRepository extends JpaRepository<Animal, Integer> {
 
-    public List<Animal> findAnimalByType(String type);
+    public List<Animal> findAnimalByType(Animal.Type type);
     @Query("FROM Animal where animal_id = :animal_id")
     Animal findAnimalById(@Param("animal_id") int animal_id);
     public List<Animal> findAnimalByName(String name);
     public List<Animal> findAnimalByGender(Animal.Gender gender);
-    public List<Animal> findAnimalByBreed(String breed);
+    public List<Animal> findAnimalByBreed(Animal.Breed breed);
     public List<Animal> findAnimalByAge(int age);
     public List<Animal> findAnimalByOrganization(Organization organization);
     public List<Animal> findAnimalByFee(int fee);
