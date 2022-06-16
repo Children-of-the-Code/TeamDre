@@ -54,3 +54,4 @@ public class UserController {
         return userService.changeUserInfo(user);
     }
 }
+

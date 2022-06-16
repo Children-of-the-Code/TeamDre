@@ -31,7 +31,6 @@ public class UserService {
         User user = userRepository.login(username, password);
 
         if (user!=null) {
-
             return user;
         }else {
             return null;
@@ -81,4 +80,6 @@ public class UserService {
     public User getByUsername(String name) {
         return userRepository.findByUsername(name);
     }
+
 }
+
