@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("interests")
@@ -23,18 +24,19 @@ public class InterestController {
         this.userService = userService;
     }
 
-    @GetMapping("user_id/{user_id}")
+    @GetMapping("get_all/{user_id}")
     public List<Animal> getFavoriteAnimals(@PathVariable("user_id")int id){
         return interestService.getAnimalsInterestedIn(id);
     }
 
     @PostMapping("favorite")
-    public void addFavorite(@RequestBody int userId, int animalID){
-        interestService.favoriteAnimal(userId, animalID);
+    public void addFavorite(@RequestBody Map<String, Object> dto){
+        interestService.favoriteAnimal(Integer.parseInt(dto.get("userid").toString()), Integer.parseInt(dto.get("animalid").toString()));
     }
 
     @PostMapping("remove")
-    public void removeFavorite(@RequestBody int userId, int animalId){
-        interestService.removeFavorite(userId, animalId);
+    public void removeFavorite(@RequestBody Map<String, Object> dto){
+        interestService.removeFavorite(Integer.parseInt(dto.get("userid").toString()), Integer.parseInt(dto.get("animalid").toString()));
     }
+
 }

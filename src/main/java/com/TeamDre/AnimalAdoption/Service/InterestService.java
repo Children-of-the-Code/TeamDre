@@ -26,31 +26,34 @@ public class InterestService {
     }
 
     public List<Animal> getAnimalsInterestedIn(int userID){
-        List<Interest> allEntries = interestRepository.findAll();
-        List<Interest> allowedEntrees = new ArrayList<>();
-        for(Interest interest: allEntries){
-            if(interest.getUser().getUser_id() == userID){
-                allowedEntrees.add(interest);
-            }
-        }
+        User u = userRepository.getUserById(userID);
+        List<Interest> allEntries = interestRepository.findAllByUser(u);
         List<Animal> result = new ArrayList<>();
-        for(Interest interest: allowedEntrees){
+        for(Interest interest: allEntries){
             result.add(interest.getAnimal());
         }
         return result;
     }
 
     public void favoriteAnimal(int userID, int animalID){
-        Animal a = animalRepository.getById(animalID);
+        Animal a = animalRepository.findAnimalById(animalID);
         User u = userRepository.getUserById(userID);
-        Interest i = new Interest(u, a);
-        interestRepository.save(i);
+        if(u != null && a != null){
+            Interest i = new Interest(0, u, a);
+            Interest temp = interestRepository.findByUserAndAnimal(u, a);
+            if (temp == null) {
+                interestRepository.save(i);
+            }
+        }
     }
 
     public void removeFavorite(int userID, int animalID){
-        Animal a = animalRepository.getById(animalID);
+        Animal a = animalRepository.findAnimalById(animalID);
         User u = userRepository.getUserById(userID);
-        Interest i = new Interest(u, a);
-        interestRepository.delete(i);
+        if(u != null && a != null){
+            Interest i = interestRepository.findByUserAndAnimal(u, a);
+            interestRepository.delete(i);
+        }
     }
+
 }
