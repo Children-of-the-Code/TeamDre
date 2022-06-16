@@ -27,26 +27,76 @@ public class Animal {
     @Column
     private int age;
     @Column
+    private Gender gender;
+    @Column
     private Date date_added;
     @Column
     private Temperament temperament;
     @Column
-    private int fee;
+    private float fee;
 
     @ManyToOne
     @JoinColumn(name="org_id", nullable = false)
     private Organization organization;
     @Column
-    private String type;
+    private Type type;
     @Column
-    private String breed;
+    private Breed breed;
     @Column
-    private String gets_along;
+    private GetsAlong gets_along;
 
+    public enum Type{
+        Dog,
+        Cat
+    }
     public enum Temperament{
         Mild,
         Medium,
         Hot,
         Spicy
+    }
+    public enum Gender{
+        Male,
+        Female,
+        Unknown
+    }
+    public enum GetsAlong{
+        Dogs,
+        Cats,
+        kids,
+        AllAnimals,
+        AllAnimalKids,
+        None
+    }
+    public enum Breed{
+        Abyssinian,
+        Aussiedoodle,
+        Beagle,
+        Bombay,
+        Bulldog,
+        Calico,
+        Chihuahua,
+        Dalmatian,
+        Feist,
+        Greyhound,
+        Havana,
+        Hound,
+        Husky,
+        Jindo,
+        Labrador,
+        Manx,
+        Mastiff,
+        Mix,
+        Persian,
+        Puppy,
+        Ocicat,
+        Other,
+        Ragdoll,
+        Rottweiler,
+        Shepherd,
+        Siamese,
+        Sphynx,
+        Tabby,
+        Tuxedo
     }
 }
