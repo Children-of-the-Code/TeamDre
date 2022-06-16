@@ -4,8 +4,6 @@ import com.TeamDre.AnimalAdoption.Model.Animal;
 import com.TeamDre.AnimalAdoption.Model.Interest;
 import com.TeamDre.AnimalAdoption.Model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
 import java.util.List;

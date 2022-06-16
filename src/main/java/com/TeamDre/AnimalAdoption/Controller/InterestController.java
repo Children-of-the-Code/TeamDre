@@ -1,10 +1,7 @@
 package com.TeamDre.AnimalAdoption.Controller;
 
-import com.TeamDre.AnimalAdoption.Model.Interest;
 import com.TeamDre.AnimalAdoption.Model.Animal;
-import com.TeamDre.AnimalAdoption.Model.User;
 import com.TeamDre.AnimalAdoption.Service.InterestService;
-import com.TeamDre.AnimalAdoption.Service.AnimalService;
 import com.TeamDre.AnimalAdoption.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
