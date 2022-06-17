@@ -52,7 +52,9 @@ public class InterestService {
         User u = userRepository.getUserById(userID);
         if(u != null && a != null){
             Interest i = interestRepository.findByUserAndAnimal(u, a);
-            interestRepository.delete(i);
+            if (i != null) {
+                interestRepository.delete(i);
+            }
         }
     }
 
