@@ -63,6 +63,34 @@ public class AnimalService {
         animalRepository.save(animal);
     }
 
+    public String changeInfo(Animal animal) {
+
+        Animal temp=animalRepository.findAnimalById(animal.getAnimal_id());
+        System.out.println(temp+"is null");
+
+        if (temp!=null){
+           animalRepository.save(animal);
+           return "animal changed";
+        }else{
+            return "Could not update the Organization. Please fill out the form correctly";
+        }
+
+    }
+    public String deleteAnimal(int id, int orgid){
+        Organization org=organizationRepository.findByOrg_id(orgid);
+        Animal temp=new Animal();
+        if(org!=null) {
+             temp = animalRepository.findAnimalById(id);
+        }
+        if (temp!=null && temp.getOrganization()==org){
+            animalRepository.delete(temp);
+            return "deleted animal";
+        }else{
+            return "could not delete animal";
+        }
+
+    }
+
 
     public List<Animal> search(Map<String, Object> dto) {
         List<Animal> master = animalRepository.findAll();

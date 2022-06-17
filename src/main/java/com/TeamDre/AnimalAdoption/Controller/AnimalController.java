@@ -48,5 +48,16 @@ public class AnimalController {
     public List<Animal> sale(@PathVariable("id") int id, @RequestBody Map<String, Object> dto){
         return animalService.addSale(id, dto);
     }
+
+    @PostMapping("deleteanimal")
+    public String deleteAnimal(@RequestBody Map<String, Object> dto){
+        return animalService.deleteAnimal(Integer.parseInt(dto.get("animalid").toString()), Integer.parseInt(dto.get("orgid").toString()));
+    }
+
+    @PostMapping("changeanimal")
+    public String changeAnimal(@RequestBody Animal animal){
+        return animalService.changeInfo(animal);
+    }
+
 }
 
