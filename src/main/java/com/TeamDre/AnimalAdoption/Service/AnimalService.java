@@ -66,13 +66,12 @@ public class AnimalService {
     public String changeInfo(Animal animal) {
 
         Animal temp=animalRepository.findAnimalById(animal.getAnimal_id());
-        System.out.println(temp+"is null");
 
         if (temp!=null){
            animalRepository.save(animal);
            return "animal changed";
         }else{
-            return "Could not update the Organization. Please fill out the form correctly";
+            return "Could not update the Animal. Please fill out the form correctly";
         }
 
     }
