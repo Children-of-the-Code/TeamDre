@@ -38,6 +38,12 @@ public class AnimalController {
         animalService.createAnimal(animal, id);
     }
 
+    @GetMapping("findbyid/{id}")
+    public Animal getAnimalById(@PathVariable("id") int id){
+        return animalService.getAnimalById(id);
+    }
+
+
 
     @PostMapping("search")
     public List<Animal> search(@RequestBody Map<String, Object> dto){
