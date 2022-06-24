@@ -4,6 +4,7 @@ import com.TeamDre.AnimalAdoption.Repository.AnimalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.text.DecimalFormat;
 import java.util.*;
 
 @Component
@@ -279,18 +280,12 @@ public class AnimalService {
 
 
     public Animal addSale(int id, Map<String, Object> dto) {
+        final DecimalFormat df = new DecimalFormat("0.00");
         Animal animal=animalRepository.findById(id).get();
         float prevSale=(100-animal.getSale())/100;
-
         float newSale=(100-Float.parseFloat(dto.get("sale").toString()))/100;
-            float temp=animal.getFee();
-            animal.setFee(temp/prevSale);
-            animalRepository.save(animal);
-
-            float temp2=animal.getFee();
-            animal.setFee(temp2*newSale);
-            animalRepository.save(animal);
-
+        float reset=animal.getFee()/prevSale;
+        animal.setFee(Float.parseFloat(df.format(reset*newSale)));
         animal.setSale(Float.parseFloat(dto.get("sale").toString()));
         animalRepository.save(animal);
         return animal;
