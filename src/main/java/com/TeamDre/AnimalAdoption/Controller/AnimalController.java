@@ -1,11 +1,7 @@
 package com.TeamDre.AnimalAdoption.Controller;
 
 import com.TeamDre.AnimalAdoption.Model.Animal;
-import com.TeamDre.AnimalAdoption.Model.Organization;
-import com.TeamDre.AnimalAdoption.Model.User;
 import com.TeamDre.AnimalAdoption.Service.AnimalService;
-import com.TeamDre.AnimalAdoption.Service.OrganizationService;
-import com.TeamDre.AnimalAdoption.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 
+@CrossOrigin(origins="*", allowedHeaders = "*")
 @RestController
 @RequestMapping("animals")
 public class AnimalController {
@@ -32,10 +29,10 @@ public class AnimalController {
     public List<Animal> getAllAnimals(){
         return animalService.getAllAnimal();
     }
-    @PostMapping("add/{id}")
-    public void addAnimal(@RequestBody Animal animal, @PathVariable("id") int id){
+    @PostMapping("add")
+    public void addAnimal(@RequestBody Animal animal){
 
-        animalService.createAnimal(animal, id);
+        animalService.createAnimal(animal);
     }
 
     @GetMapping("findbyid/{id}")
@@ -51,13 +48,13 @@ public class AnimalController {
     }
 
     @PostMapping("sale/{id}")
-    public List<Animal> sale(@PathVariable("id") int id, @RequestBody Map<String, Object> dto){
+    public Animal sale(@PathVariable("id") int id, @RequestBody Map<String, Object> dto){
         return animalService.addSale(id, dto);
     }
 
     @PostMapping("deleteanimal")
     public String deleteAnimal(@RequestBody Map<String, Object> dto){
-        return animalService.deleteAnimal(Integer.parseInt(dto.get("animalid").toString()), Integer.parseInt(dto.get("orgid").toString()));
+        return animalService.deleteAnimal(Integer.parseInt(dto.get("animalid").toString()));
     }
 
     @PostMapping("changeanimal")

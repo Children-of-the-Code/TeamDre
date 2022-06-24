@@ -1,8 +1,6 @@
 package com.TeamDre.AnimalAdoption.Service;
 import com.TeamDre.AnimalAdoption.Model.Animal;
-import com.TeamDre.AnimalAdoption.Model.Organization;
 import com.TeamDre.AnimalAdoption.Repository.AnimalRepository;
-import com.TeamDre.AnimalAdoption.Repository.OrganizationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,10 +9,8 @@ import java.util.*;
 @Component
 public class AnimalService {
     AnimalRepository animalRepository;
-    OrganizationRepository organizationRepository;
     @Autowired
-    public AnimalService(AnimalRepository animalRepository, OrganizationRepository organizationRepository){
-        this.organizationRepository=organizationRepository;
+    public AnimalService(AnimalRepository animalRepository){
         this.animalRepository=animalRepository;
     }
 
@@ -42,31 +38,21 @@ public class AnimalService {
     public List<Animal> getAnimalByAge(int age){
         return animalRepository.findAnimalByAge(age);
     }
-    public List<Animal> getAnimalByOrganization(Organization organization){
-        return animalRepository.findAnimalByOrganization(organization);
-    }
     public List<Animal> getAnimalByFee(int fee){
         return animalRepository.findAnimalByFee(fee);
     }
     public Animal getAnimalByDateAdded(Date date){
         return animalRepository.findAnimalByDateAdded(date);
     }
-    public List<Animal> getAnimalByCity(String city){
-        return animalRepository.findAnimalByOrganizationCity(city);
-    }
-    public List<Animal> getAnimalByState(String state){
-        return animalRepository.findAnimalByOrganizationState(state);
-    }
-    public void createAnimal(Animal animal, int id){
-        Organization u=organizationRepository.getById(id);
-        animal.setOrganization(u);
+
+    public void createAnimal(Animal animal){
         animalRepository.save(animal);
     }
 
     public String changeInfo(Animal animal) {
 
         Animal temp=animalRepository.findAnimalById(animal.getAnimal_id());
-
+        System.out.println(temp);
         if (temp!=null){
            animalRepository.save(animal);
            return "animal changed";
@@ -75,13 +61,10 @@ public class AnimalService {
         }
 
     }
-    public String deleteAnimal(int id, int orgid){
-        Organization org=organizationRepository.findByOrg_id(orgid);
-        Animal temp=new Animal();
-        if(org!=null) {
-             temp = animalRepository.findAnimalById(id);
-        }
-        if (temp!=null && temp.getOrganization()==org){
+    public String deleteAnimal(int id){
+        Animal temp= animalRepository.findAnimalById(id);
+
+        if (temp!=null){
             animalRepository.delete(temp);
             return "deleted animal";
         }else{
@@ -177,28 +160,6 @@ public class AnimalService {
             temp1=new ArrayList<>();
         }
 
-
-        //city parameter
-        if (!dto.get("city").toString().isEmpty()){
-            for(Animal a:master){
-                if(a.getOrganization().getCity().equals(dto.get("city").toString())){
-                    temp1.add(a);
-                }
-            }
-            master=temp1;
-            temp1=new ArrayList<>();
-        }
-
-        //state parameter
-        if (!dto.get("state").toString().isEmpty()){
-            for(Animal a:master){
-                if(a.getOrganization().getState().equals(dto.get("state").toString())){
-                    temp1.add(a);
-                }
-            }
-            master=temp1;
-            temp1=new ArrayList<>();
-        }
 
         //fee parameter
         if (!dto.get("fee").toString().equals("0")||!dto.get("fee2").toString().equals("0")){
@@ -317,25 +278,22 @@ public class AnimalService {
     }
 
 
-    public List<Animal> addSale(int id, Map<String, Object> dto) {
-        Organization org=organizationRepository.findById(id).get();
-        List<Animal> animals=animalRepository.findAnimalByOrganization(org);
-        float prevSale=(100-org.getSale())/100;
+    public Animal addSale(int id, Map<String, Object> dto) {
+        Animal animal=animalRepository.findById(id).get();
+        float prevSale=(100-animal.getSale())/100;
 
         float newSale=(100-Float.parseFloat(dto.get("sale").toString()))/100;
-        for (Animal a:animals){
-            float temp=a.getFee();
-            a.setFee(temp/prevSale);
-            animalRepository.save(a);
-        }
-        for (Animal a:animals){
-            float temp=a.getFee();
-            a.setFee(temp*newSale);
-            animalRepository.save(a);
-        }
-        org.setSale(Float.parseFloat(dto.get("sale").toString()));
-        organizationRepository.save(org);
-        return animals;
+            float temp=animal.getFee();
+            animal.setFee(temp/prevSale);
+            animalRepository.save(animal);
+
+            float temp2=animal.getFee();
+            animal.setFee(temp2*newSale);
+            animalRepository.save(animal);
+
+        animal.setSale(Float.parseFloat(dto.get("sale").toString()));
+        animalRepository.save(animal);
+        return animal;
     }
 }
 

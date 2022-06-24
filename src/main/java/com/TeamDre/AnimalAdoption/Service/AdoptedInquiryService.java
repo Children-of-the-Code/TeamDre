@@ -47,18 +47,6 @@ public class AdoptedInquiryService {
         return adoptedInquiryRepository.getInquiriesByAnimalId(animalId);
     }
 
-    public List<AdoptedInquiry> getInquiriesByOrgId (int orgId) {
-        List<AdoptedInquiry> allInquiries = new ArrayList<AdoptedInquiry>();
-        List<AdoptedInquiry> inquiriesWithOrgId = new ArrayList<AdoptedInquiry>();
-        allInquiries = adoptedInquiryRepository.findAll();
-        for(AdoptedInquiry a: allInquiries){
-            if(a.getAnimal().getOrganization().getOrg_id() == orgId){
-                inquiriesWithOrgId.add(a);
-            }
-        }
-        return inquiriesWithOrgId;
-        //return adoptedInquiryRepository.getInquiriesByOrgId(orgId);
-    }
 
     public List<AdoptedInquiry> getInquiriesByStatus (AdoptedInquiry.Status status){
         return adoptedInquiryRepository.getInquiriesByStatus(status);

@@ -34,16 +34,16 @@ public class Animal {
     private Temperament temperament;
     @Column
     private float fee;
-
-    @ManyToOne
-    @JoinColumn(name="org_id", nullable = false)
-    private Organization organization;
     @Column
     private Type type;
     @Column
     private Breed breed;
     @Column
     private GetsAlong gets_along;
+    @Column
+    private String url;
+    @Column
+    private float sale;
 
     public enum Type{
         Dog,

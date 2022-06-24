@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
+
+@CrossOrigin(origins="*", allowedHeaders = "*")
 @RestController
 @RequestMapping("inquiries")
 public class AdoptedInquiryController {
@@ -45,12 +47,6 @@ public class AdoptedInquiryController {
     @GetMapping("animal/{id}")
     public List<AdoptedInquiry> getInquiriesByAnimalId(@PathVariable("id") int animalId){
         return adoptedInquiryService.getInquiriesByAnimalId(animalId);
-    }
-
-    // Get inquiry by organization
-    @GetMapping("organization/{id}")
-    public List<AdoptedInquiry> getInquiriesByOrgId(@PathVariable("id") int orgId){
-        return adoptedInquiryService.getInquiriesByOrgId(orgId);
     }
 
     // Get a list of inquiries by status

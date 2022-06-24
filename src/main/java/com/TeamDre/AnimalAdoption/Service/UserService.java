@@ -23,6 +23,7 @@ public class UserService {
         String username=user.getUsername();
         User temp=userRepository.getUserByUsername(username);
         User temp2=userRepository.getUserByEmail(user.getEmail());
+        user.setRole(User.Role.User);
         if (temp==null&&temp2==null) {
             userRepository.save(user);
         }
