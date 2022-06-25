@@ -88,7 +88,6 @@ public class Animal {
         Mastiff,
         Mix,
         Persian,
-        Puppy,
         Ocicat,
         Other,
         Ragdoll,
