@@ -122,10 +122,10 @@ public class AnimalService {
         if (!dto.get("age").toString().equals("0")||!dto.get("age2").toString().equals("0")||!dto.get("age").toString().isEmpty()||!dto.get("age2").toString().isEmpty()){
             int agemin=Integer.MIN_VALUE;
             int agemax=Integer.MAX_VALUE;
-            if(!dto.get("age").toString().equals("0")) {
+            if(!dto.get("age").toString().equals("0")&&!dto.get("age").toString().isEmpty()) {
                 agemin = Integer.parseInt(dto.get("age").toString());
             }
-            if(!dto.get("age2").toString().equals("0")) {
+            if(!dto.get("age2").toString().equals("0")&&!dto.get("age2").toString().isEmpty()) {
                 agemax = Integer.parseInt(dto.get("age2").toString());
             }
             for(Animal a:master){
@@ -163,14 +163,14 @@ public class AnimalService {
 
 
         //fee parameter
-        if (!dto.get("fee").toString().equals("0")||!dto.get("fee2").toString().equals("0")){
+        if (!dto.get("fee").toString().equals("0")||!dto.get("fee2").toString().equals("0")||!dto.get("fee").toString().isEmpty()||!dto.get("fee2").toString().isEmpty()){
             float feemin=Integer.MIN_VALUE;
             float feemax=Integer.MAX_VALUE;
 
-            if(!dto.get("fee").toString().equals("0")) {
+            if(!dto.get("fee").toString().equals("0")&&!dto.get("fee").toString().isEmpty()) {
                 feemin = Float.parseFloat(dto.get("fee").toString());
             }
-            if(!dto.get("fee2").toString().equals("0")) {
+            if(!dto.get("fee2").toString().equals("0")&&!dto.get("fee2").toString().isEmpty()) {
                 feemax = Float.parseFloat(dto.get("fee2").toString());
             }
             for(Animal a:master){
