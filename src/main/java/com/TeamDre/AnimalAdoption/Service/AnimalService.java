@@ -95,21 +95,27 @@ public class AnimalService {
             if (!dto.get("breed").toString().isEmpty()){
                 for (Animal a:master){
                     if (a.getBreed().toString().equals(dto.get("breed").toString())){
-                        temp1.add(a);
+                        if (!temp1.contains(a)) {
+                            temp1.add(a);
+                        }
                     }
                 }
             }
             if (!dto.get("breed2").toString().isEmpty()){
                 for (Animal a:master){
                     if (a.getBreed().toString().equals(dto.get("breed2").toString())){
-                        temp1.add(a);
+                        if (!temp1.contains(a)) {
+                            temp1.add(a);
+                        }
                     }
                 }
             }
             if (!dto.get("breed3").toString().isEmpty()){
                 for (Animal a:master){
                     if (a.getBreed().toString().equals(dto.get("breed3").toString())){
-                        temp1.add(a);
+                        if (!temp1.contains(a)) {
+                            temp1.add(a);
+                        }
                     }
                 }
             }
