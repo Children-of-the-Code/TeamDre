@@ -119,7 +119,7 @@ public class AnimalService {
         }
 
         //age parameter
-        if (!dto.get("age").toString().equals("0")||!dto.get("age2").toString().equals("0")){
+        if (!dto.get("age").toString().equals("0")||!dto.get("age2").toString().equals("0")||!dto.get("age").toString().isEmpty()||!dto.get("age2").toString().isEmpty()){
             int agemin=Integer.MIN_VALUE;
             int agemax=Integer.MAX_VALUE;
             if(!dto.get("age").toString().equals("0")) {
