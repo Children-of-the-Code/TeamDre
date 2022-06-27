@@ -1,6 +1,7 @@
 package com.TeamDre.AnimalAdoption.Controller;
 
 import com.TeamDre.AnimalAdoption.Model.AdoptedInquiry;
+import com.TeamDre.AnimalAdoption.Model.Animal;
 import com.TeamDre.AnimalAdoption.Service.AdoptedInquiryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -66,4 +67,10 @@ public class AdoptedInquiryController {
     public void deleteInquiryById(@PathVariable("id") int inquiryId){
         adoptedInquiryService.deleteInquiryById(inquiryId);
     }
+
+    @GetMapping("animallist/{id}")
+    public List<Animal> getallanimalsbyuserid(@PathVariable("id") int userId){
+        return adoptedInquiryService.getAnimalsByUserId(userId);
+    }
+
 }

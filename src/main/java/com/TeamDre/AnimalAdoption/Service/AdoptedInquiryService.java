@@ -94,4 +94,17 @@ public class AdoptedInquiryService {
             System.out.println("Update failed. Inquiry with the ID " + inquiryId + " does not exist.");
         }
     }
+
+    public List<Animal> getAnimalsByUserId(int userId) {
+        List<Animal> temp=new ArrayList<>();
+        List<AdoptedInquiry> temp2=adoptedInquiryRepository.getInquiriesByUserID(userId);
+        if (temp2!=null) {
+            for (AdoptedInquiry a : temp2) {
+                Animal b = animalRepository.getById(a.getAnimal().getAnimal_id());
+                temp.add(b);
+            }
+            return temp;
+        }
+        return null;
+    }
 }
