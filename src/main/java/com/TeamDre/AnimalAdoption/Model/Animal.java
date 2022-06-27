@@ -44,6 +44,8 @@ public class Animal {
     private String url;
     @Column
     private float sale;
+    @Column
+    private boolean adopted;
 
     public enum Type{
         Dog,

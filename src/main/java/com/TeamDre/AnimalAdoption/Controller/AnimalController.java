@@ -31,7 +31,7 @@ public class AnimalController {
     }
     @PostMapping("add")
     public void addAnimal(@RequestBody Animal animal){
-
+        animal.setAdopted(false);
         animalService.createAnimal(animal);
     }
 

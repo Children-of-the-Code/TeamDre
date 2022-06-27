@@ -76,7 +76,7 @@ public class AnimalService {
 
 
     public List<Animal> search(Map<String, Object> dto) {
-        List<Animal> master = animalRepository.findAll();
+        List<Animal> master = animalRepository.findAllAnimalByAdoption(false);
         List<Animal> temp1 = new ArrayList<>();
 
         //type parameter

@@ -2,6 +2,7 @@ package com.TeamDre.AnimalAdoption.Service;
 
 import com.TeamDre.AnimalAdoption.Model.AdoptedInquiry;
 
+import com.TeamDre.AnimalAdoption.Model.Animal;
 import com.TeamDre.AnimalAdoption.Repository.AdoptedInquiryRepository;
 import com.TeamDre.AnimalAdoption.Repository.AnimalRepository;
 import com.TeamDre.AnimalAdoption.Repository.UserRepository;
@@ -78,6 +79,11 @@ public class AdoptedInquiryService {
             AdoptedInquiry ai = adoptedInquiryRepository.getById(inquiryId);
             System.out.println(ai.toString());
             if(status != AdoptedInquiry.Status.Pending){
+                if (status.equals(AdoptedInquiry.Status.Approved)){
+                   Animal temp= animalRepository.getById(ai.getAnimal().getAnimal_id());
+                   temp.setAdopted(true);
+                   animalRepository.save(temp);
+                }
                 ai.setStatus(status);
                 adoptedInquiryRepository.save(ai);
                 System.out.println("Success. Updated inquiry with the status " + status + ".");
