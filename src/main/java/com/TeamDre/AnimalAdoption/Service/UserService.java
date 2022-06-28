@@ -34,7 +34,7 @@ public class UserService {
         if (user!=null) {
             return user;
         }else {
-            return null;
+            return new User();
         }
     }
     public User getUserByUsername(String username){
