@@ -296,5 +296,9 @@ public class AnimalService {
         animalRepository.save(animal);
         return animal;
     }
+
+    public List<Animal> getFeatured() {
+        return animalRepository.findByAgeGreaterThan(10);
+    }
 }
 
