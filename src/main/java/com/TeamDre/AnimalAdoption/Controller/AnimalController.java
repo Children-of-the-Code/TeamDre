@@ -66,6 +66,10 @@ public class AnimalController {
     public List<Animal> featured(){
         return animalService.getFeatured();
     }
+    @GetMapping("sale")
+    public List<Animal>sale(){
 
+        return animalService.getSale();
+    }
 }
 

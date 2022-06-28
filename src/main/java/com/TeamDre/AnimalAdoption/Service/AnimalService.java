@@ -300,5 +300,9 @@ public class AnimalService {
     public List<Animal> getFeatured() {
         return animalRepository.findByAgeGreaterThan(10);
     }
+
+    public List<Animal> getSale() {
+        return animalRepository.findBySaleGreaterThan(0);
+    }
 }
 
