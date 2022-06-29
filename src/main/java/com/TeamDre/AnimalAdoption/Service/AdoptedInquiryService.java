@@ -3,6 +3,7 @@ package com.TeamDre.AnimalAdoption.Service;
 import com.TeamDre.AnimalAdoption.Model.AdoptedInquiry;
 
 import com.TeamDre.AnimalAdoption.Model.Animal;
+import com.TeamDre.AnimalAdoption.Model.Donation;
 import com.TeamDre.AnimalAdoption.Repository.AdoptedInquiryRepository;
 import com.TeamDre.AnimalAdoption.Repository.AnimalRepository;
 import com.TeamDre.AnimalAdoption.Repository.UserRepository;
@@ -104,6 +105,16 @@ public class AdoptedInquiryService {
                 temp.add(b);
             }
             return temp;
+        }
+        return null;
+    }
+    public AdoptedInquiry getInquiryByUserIdAndAnimalId(int userId, int animalId){
+        List<AdoptedInquiry> inquiries =new ArrayList<>();
+        inquiries.addAll(adoptedInquiryRepository.getInquiriesByUserID(userId));
+        for(AdoptedInquiry a: inquiries){
+            if(a.getAnimal().getAnimal_id() == animalId){
+                return a;
+            }
         }
         return null;
     }

@@ -68,9 +68,16 @@ public class AdoptedInquiryController {
         adoptedInquiryService.deleteInquiryById(inquiryId);
     }
 
+    // Get list of inquired animals by user ID
     @GetMapping("animallist/{id}")
     public List<Animal> getallanimalsbyuserid(@PathVariable("id") int userId){
         return adoptedInquiryService.getAnimalsByUserId(userId);
+    }
+
+    // Get specific inquiry by user id and animal id
+    @GetMapping("getinquiry/user/{userid}/animal/{animalid}")
+    public AdoptedInquiry getInquiryByUserIdAndAnimalId(@PathVariable("userid") int userId, @PathVariable("animalid") int animalId){
+        return adoptedInquiryService.getInquiryByUserIdAndAnimalId(userId , animalId);
     }
 
 }
