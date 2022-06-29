@@ -55,13 +55,23 @@ public class AdoptedInquiryService {
     }
 
     public void createInquiry(int userId, int animalId){
-        AdoptedInquiry inquiry = new AdoptedInquiry();
-        inquiry.setUser(userRepository.getById(userId));
-        inquiry.setAnimal(animalRepository.getById(animalId));
-        Date currentDate = new Date();
-        inquiry.setDate_added(currentDate);
-        inquiry.setStatus(AdoptedInquiry.Status.Pending);
-        adoptedInquiryRepository.save(inquiry);
+        List<AdoptedInquiry> inquiries =new ArrayList<>();
+        inquiries.addAll(adoptedInquiryRepository.getInquiriesByUserID(userId));
+        AdoptedInquiry temp=new AdoptedInquiry();
+        for(AdoptedInquiry a: inquiries){
+            if(a.getAnimal().getAnimal_id() == animalId){
+                temp=a;
+            }
+        }
+        if (temp.getDate_added()==null) {
+            AdoptedInquiry inquiry = new AdoptedInquiry();
+            inquiry.setUser(userRepository.getById(userId));
+            inquiry.setAnimal(animalRepository.getById(animalId));
+            Date currentDate = new Date();
+            inquiry.setDate_added(currentDate);
+            inquiry.setStatus(AdoptedInquiry.Status.Pending);
+            adoptedInquiryRepository.save(inquiry);
+        }
     }
 
     public void deleteInquiryById(int inquiryId){
