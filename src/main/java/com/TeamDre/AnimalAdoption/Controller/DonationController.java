@@ -51,8 +51,7 @@ public class DonationController {
     @PostMapping("submit")
     public void submitDonation(@RequestBody Map<String, Object> dto){
         donationService.createDonation(Double.parseDouble(dto.get("amount").toString()),
-                Integer.parseInt(dto.get("user_id").toString()),
-                Integer.parseInt(dto.get("org_id").toString()));
+                Integer.parseInt(dto.get("user_id").toString()));
     }
 
 }

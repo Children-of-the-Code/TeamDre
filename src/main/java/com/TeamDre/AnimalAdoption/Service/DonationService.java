@@ -53,7 +53,7 @@ public class DonationService {
         return result;
     }
 
-    public void createDonation(double amount, int userId, int orgId){
+    public void createDonation(double amount, int userId){
         Donation donation = new Donation();
 
         donation.setAmount(amount);
