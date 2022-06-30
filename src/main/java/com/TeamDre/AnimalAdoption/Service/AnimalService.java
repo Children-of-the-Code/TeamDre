@@ -298,11 +298,11 @@ public class AnimalService {
     }
 
     public List<Animal> getFeatured() {
-        return animalRepository.findByAgeGreaterThan(10);
+        return animalRepository.findByAgeGreaterThan();
     }
 
     public List<Animal> getSale() {
-        return animalRepository.findBySaleGreaterThan(0);
+        return animalRepository.findBySaleGreaterThan();
     }
 }
 

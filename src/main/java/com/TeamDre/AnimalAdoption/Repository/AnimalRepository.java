@@ -28,9 +28,11 @@ public interface AnimalRepository extends JpaRepository<Animal, Integer> {
     @Query("From Animal where adopted='false'")
     List<Animal> findAllAnimalByAdoption(boolean b);
 
-    List<Animal> findByAgeGreaterThan(int s);
+    @Query("From Animal Where age>10 and adopted='false'")
+    List<Animal> findByAgeGreaterThan();
 
-    List<Animal> findBySaleGreaterThan(float i);
+    @Query("From Animal Where sale>0 and adopted='false'")
+    List<Animal> findBySaleGreaterThan();
 }
 
 
